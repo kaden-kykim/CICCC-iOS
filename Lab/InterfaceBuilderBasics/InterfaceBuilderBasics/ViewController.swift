@@ -21,4 +21,3 @@ class ViewController: UIViewController {
         mainLabel.text = "This app rocks!"
     }
 }
-
