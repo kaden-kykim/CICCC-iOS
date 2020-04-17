@@ -14,8 +14,46 @@ class ViewController: UIViewController {
     @IBOutlet var slider: UISlider!
     @IBOutlet var nameField: UITextField!
     
+    let moneyButton: UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = .blue
+        btn.setTitle("😛", for: .normal)
+        btn.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        btn.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        return btn
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(moneyButton)
+        moneyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32).isActive = true
+        moneyButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -64).isActive = true
+        moneyButton.addTarget(self, action: #selector(moneyButtonTapped), for: .touchUpInside)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapRecognized))
+        view.addGestureRecognizer(tapGesture)
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panRecognized))
+        view.addGestureRecognizer(panGesture)
+    }
+    
+    @objc func tapRecognized(_ recognizer: UITapGestureRecognizer) {
+        print("Tap Recognized!")
+    }
+    
+    @objc func panRecognized(_ recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .changed:
+            print(recognizer.translation(in: view))
+        default:
+            break;
+        }
+    }
+    
+    @objc func moneyButtonTapped(_ sender: UIButton) {
+        print("Get money 💰")
     }
 
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
