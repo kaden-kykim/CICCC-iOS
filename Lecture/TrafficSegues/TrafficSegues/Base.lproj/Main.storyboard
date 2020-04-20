@@ -114,6 +114,24 @@
                     <view key="view" contentMode="scaleToFill" id="zqh-PZ-vuK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Src-CG-HJD">
+                                <rect key="frame" x="97" y="433" width="86" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Go to Purple"/>
+                                <connections>
+                                    <action selector="purpleButtonTapped:" destination="23X-ZY-Hnh" eventType="touchUpInside" id="OtT-29-tgm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szz-bK-Zgp">
+                                <rect key="frame" x="240" y="433" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Go to Orange"/>
+                                <connections>
+                                    <action selector="orangeButtonTapped:" destination="23X-ZY-Hnh" eventType="touchUpInside" id="qeo-bg-BuJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="K1F-km-EnQ"/>
                     </view>
@@ -126,11 +144,47 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="sph-XN-SzP" kind="show" identifier="GoToPurple" id="96z-jO-8qd"/>
+                        <segue destination="XhL-BR-NLQ" kind="show" identifier="GoToOrange" id="Vxg-7S-Xy3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8zK-5B-Exc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="MOk-n9-fxr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3000.0000000000005" y="138.61607142857142"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="I3Z-W9-Crn">
+            <objects>
+                <viewController id="XhL-BR-NLQ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pfe-mt-XHW" customClass="GoToOrange">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="T0c-hL-CWb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="V7C-pN-mdZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YoO-ON-Vqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3960" y="452"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Hgv-kG-W1a">
+            <objects>
+                <viewController id="sph-XN-SzP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xeO-nf-iWK" customClass="GoToPurple">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="cvW-Hw-xSo"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aG5-UR-BKj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GPq-Iq-QOn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3960" y="-274"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="phQ-M9-9ET">

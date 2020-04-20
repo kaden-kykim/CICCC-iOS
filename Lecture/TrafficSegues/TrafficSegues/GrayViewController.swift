@@ -22,4 +22,12 @@ class GrayViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func purpleButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "GoToPurple", sender: sender)
+    }
+    
+    @IBAction func orangeButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "GoToOrange", sender: sender)
+    }
 }
