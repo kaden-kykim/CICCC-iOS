@@ -16,9 +16,27 @@ class GrayViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier, identifier == "unwindToFirst" {
-            if let destinationVC = segue.destination as? ViewController {
-                // do the same as forward segue
-                destinationVC.navigationItem.title = "Popped Green"
+            
+        }
+        
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "unwindToRed":
+                if let destinationVC = segue.destination as? ViewController {
+                    destinationVC.navigationItem.title = "Popped Green"
+                }
+            case "GoToPurple":
+//                if let destinationVC = segue.destination as? PurpleViewController {
+                    // do the same as forward segue
+//                }
+                print("prepareForPurple")
+            case "GoToOrange":
+//                if let destinationVC = segue.destination as? OrangeViewController {
+                    // do the same as forward segue
+//                }
+                print("prepareForOrange")
+            default:
+                fatalError("Wrong segue identifier")
             }
         }
     }
