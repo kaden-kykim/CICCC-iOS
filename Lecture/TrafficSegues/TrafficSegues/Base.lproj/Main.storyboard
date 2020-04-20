@@ -115,24 +115,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Src-CG-HJD">
-                                <rect key="frame" x="97" y="433" width="86" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Go to Purple"/>
-                                <connections>
-                                    <action selector="purpleButtonTapped:" destination="23X-ZY-Hnh" eventType="touchUpInside" id="OtT-29-tgm"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szz-bK-Zgp">
-                                <rect key="frame" x="240" y="433" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Go to Orange"/>
-                                <connections>
-                                    <action selector="orangeButtonTapped:" destination="23X-ZY-Hnh" eventType="touchUpInside" id="qeo-bg-BuJ"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="99Y-Lb-p5k">
+                                <rect key="frame" x="89.5" y="433" width="235" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Src-CG-HJD">
+                                        <rect key="frame" x="0.0" y="0.0" width="86" height="30"/>
+                                        <state key="normal" title="Go to Purple"/>
+                                        <connections>
+                                            <action selector="purpleButtonTapped:" destination="23X-ZY-Hnh" eventType="touchUpInside" id="OtT-29-tgm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szz-bK-Zgp">
+                                        <rect key="frame" x="143" y="0.0" width="92" height="30"/>
+                                        <state key="normal" title="Go to Orange"/>
+                                        <connections>
+                                            <action selector="orangeButtonTapped:" destination="23X-ZY-Hnh" eventType="touchUpInside" id="qeo-bg-BuJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="99Y-Lb-p5k" firstAttribute="centerY" secondItem="zqh-PZ-vuK" secondAttribute="centerY" id="GHN-xR-XoT"/>
+                            <constraint firstItem="99Y-Lb-p5k" firstAttribute="centerX" secondItem="zqh-PZ-vuK" secondAttribute="centerX" id="Jny-JL-kKM"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="K1F-km-EnQ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Gray" id="GnW-nP-jKg">
