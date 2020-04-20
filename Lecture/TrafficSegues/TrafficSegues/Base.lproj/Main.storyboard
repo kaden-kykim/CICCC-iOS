@@ -61,7 +61,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="N28-4t-AmN"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Teal" id="dOz-zz-Csy">
+                    <navigationItem key="navigationItem" title="Teal" largeTitleDisplayMode="never" id="dOz-zz-Csy">
                         <barButtonItem key="backBarButtonItem" title="Go to Teal" id="p2t-g7-qla"/>
                     </navigationItem>
                 </viewController>
@@ -94,6 +94,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Gray" id="GnW-nP-jKg">
                         <barButtonItem key="backBarButtonItem" title="Go to Gray" id="V7x-WT-pue"/>
+                        <barButtonItem key="rightBarButtonItem" title="Pop" id="5gX-EG-UNH">
+                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8zK-5B-Exc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -106,8 +109,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YXH-1o-A4k" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gqe-1r-eDo">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gqe-1r-eDo">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
