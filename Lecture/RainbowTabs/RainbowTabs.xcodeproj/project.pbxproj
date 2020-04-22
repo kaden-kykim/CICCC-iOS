@@ -15,6 +15,7 @@
 		6FBE88F92450DFEF006E80FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FBE88F72450DFEF006E80FA /* LaunchScreen.storyboard */; };
 		6FBE89012450E656006E80FA /* GreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE89002450E656006E80FA /* GreenViewController.swift */; };
 		6FBE89032450E67E006E80FA /* BlueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE89022450E67E006E80FA /* BlueViewController.swift */; };
+		6FBE89052450E9D6006E80FA /* CenterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE89042450E9D6006E80FA /* CenterButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		6FBE88FA2450DFEF006E80FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FBE89002450E656006E80FA /* GreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenViewController.swift; sourceTree = "<group>"; };
 		6FBE89022450E67E006E80FA /* BlueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueViewController.swift; sourceTree = "<group>"; };
+		6FBE89042450E9D6006E80FA /* CenterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				6FBE89002450E656006E80FA /* GreenViewController.swift */,
 				6FBE89022450E67E006E80FA /* BlueViewController.swift */,
 				6FBE88F02450DFEC006E80FA /* ViewController.swift */,
+				6FBE89042450E9D6006E80FA /* CenterButton.swift */,
 				6FBE88F22450DFEC006E80FA /* Main.storyboard */,
 				6FBE88F52450DFEF006E80FA /* Assets.xcassets */,
 				6FBE88F72450DFEF006E80FA /* LaunchScreen.storyboard */,
@@ -146,6 +149,7 @@
 			files = (
 				6FBE89012450E656006E80FA /* GreenViewController.swift in Sources */,
 				6FBE88F12450DFEC006E80FA /* ViewController.swift in Sources */,
+				6FBE89052450E9D6006E80FA /* CenterButton.swift in Sources */,
 				6FBE88ED2450DFEC006E80FA /* AppDelegate.swift in Sources */,
 				6FBE89032450E67E006E80FA /* BlueViewController.swift in Sources */,
 				6FBE88EF2450DFEC006E80FA /* SceneDelegate.swift in Sources */,

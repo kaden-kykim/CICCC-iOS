@@ -9,12 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    let centerBtn = CenterButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
+        view.addSubview(centerBtn)
+        centerBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        centerBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
-
-
+    
+    
 }
 
