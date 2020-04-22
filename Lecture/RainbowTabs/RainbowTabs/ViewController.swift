@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+//        tabbarItem = UITabBarItem(title: "Red", image: UIImage(named: "R"), selectedImage: UIImage(named: "R Selected"))
     }
 
 
