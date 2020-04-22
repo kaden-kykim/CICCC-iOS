@@ -9,6 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let incorrectMovesAllowed = 7
+    var listOfWords = ["buccaneer", "swift", "glorious", "incandescent", "bug", "program"]
+    var totalWins = 0
+    var totalLosses = 0
 
     @IBOutlet var treeImageView: UIImageView!
     @IBOutlet var correctWordLabel: UILabel!
@@ -17,7 +22,20 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        newRound()
+    }
+    
+    var currentGame: Game!
+    
+    func newRound() {
+        let newWord = listOfWords.removeFirst()
+        currentGame = Game(word: newWord, incorrectMoveRemaining: incorrectMovesAllowed)
+        updateUI()
+    }
+    
+    func updateUI() {
+        scoreLabel.text = "Wins: \(totalWins), Losses: \(totalLosses)"
+        treeImageView.image = UIImage(named: "Tree \(currentGame.incorrectMoveRemaining)")
     }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
