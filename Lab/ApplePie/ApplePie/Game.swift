@@ -11,4 +11,12 @@ import Foundation
 struct Game {
     var word: String
     var incorrectMoveRemaining: Int
+    var guessedLetters: [Character]
+    
+    mutating func playerGuessed(letter: Character) {
+        guessedLetters.append(letter)
+        if !word.contains(letter) {
+            incorrectMoveRemaining -= 1
+        }
+    }
 }

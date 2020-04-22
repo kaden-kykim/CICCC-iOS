@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     
     func newRound() {
         let newWord = listOfWords.removeFirst()
-        currentGame = Game(word: newWord, incorrectMoveRemaining: incorrectMovesAllowed)
+        currentGame = Game(word: newWord, incorrectMoveRemaining: incorrectMovesAllowed, guessedLetters: [])
         updateUI()
     }
     
@@ -40,6 +40,10 @@ class ViewController: UIViewController {
 
     @IBAction func buttonTapped(_ sender: UIButton) {
         sender.isEnabled = false
+        let letterString = sender.title(for: .normal)!
+        let letter = Character(letterString.lowercased())
+        currentGame.playerGuessed(letter: letter)
+        updateUI()
     }
     
 }
