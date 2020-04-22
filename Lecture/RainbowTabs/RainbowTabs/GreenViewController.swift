@@ -14,10 +14,18 @@ class GreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Green"
+        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .green
         view.addSubview(centerBtn)
-        centerBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        centerBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        centerBtn.addTarget(self, action: #selector(goToNextViewController), for: .touchUpInside)
+        centerBtn.centerInSuperView()
     }
-
+    
+    @objc func goToNextViewController(_ sender: UIButton) {
+        // go to GoViewController
+        let goVC = GoViewController()
+        goVC.color = navigationItem.title
+        navigationController?.pushViewController(goVC, animated: true)
+    }
 }

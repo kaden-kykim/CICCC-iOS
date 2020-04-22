@@ -27,7 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         gVC.tabBarItem = UITabBarItem(title: "Green", image: UIImage(named: "G"), selectedImage: UIImage(named: "G Selected"))
         let bVC = BlueViewController()
         bVC.tabBarItem = UITabBarItem(title: "Blue", image: UIImage(named: "B"), selectedImage: UIImage(named: "B Selected"))
-        mainTabBarController.viewControllers = [rVC, gVC, bVC]
+        let viewControllers = [rVC, gVC, bVC]
+        mainTabBarController.viewControllers = viewControllers.map { UINavigationController(rootViewController: $0)}
         
         window?.rootViewController = mainTabBarController
         window?.makeKeyAndVisible()
