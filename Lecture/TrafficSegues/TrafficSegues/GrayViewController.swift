@@ -9,11 +9,11 @@
 import UIKit
 
 class GrayViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier, identifier == "unwindToFirst" {
             
@@ -21,7 +21,7 @@ class GrayViewController: UIViewController {
         
         if let identifier = segue.identifier {
             switch identifier {
-            case "unwindToRed":
+            case "unwindToFirst":
                 if let destinationVC = segue.destination as? ViewController {
                     destinationVC.navigationItem.title = "Popped Green"
                 }
