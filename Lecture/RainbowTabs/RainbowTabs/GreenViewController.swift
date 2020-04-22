@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  GreenViewController.swift
 //  RainbowTabs
 //
 //  Created by Kaden Kim on 2020-04-22.
@@ -8,13 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class GreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .green
     }
 
-
 }
-
