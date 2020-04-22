@@ -13,6 +13,14 @@ struct Game {
     var incorrectMoveRemaining: Int
     var guessedLetters: [Character]
     
+    var formattedWord: String {
+        var guessedWord = ""
+        for letter in word {
+            guessedWord += guessedLetters.contains(letter) ? "\(letter)" : "_"
+        }
+        return guessedWord
+    }
+    
     mutating func playerGuessed(letter: Character) {
         guessedLetters.append(letter)
         if !word.contains(letter) {
