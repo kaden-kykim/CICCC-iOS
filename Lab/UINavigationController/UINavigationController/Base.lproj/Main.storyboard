@@ -75,7 +75,7 @@
         <!--Bathroom-->
         <scene sceneID="EDF-aA-Kl5">
             <objects>
-                <viewController id="ltM-eC-KNO" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ltM-eC-KNO" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZKu-Fv-fGu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,15 +98,19 @@
                     <navigationItem key="navigationItem" title="Bathroom" id="kXS-dU-Xmp">
                         <barButtonItem key="backBarButtonItem" title="Bathroom" id="Grf-XV-2NE"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="aMK-EI-oHp" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="w1a-Qh-bYe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4x-7x-PxC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="aMK-EI-oHp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4093" y="1613"/>
         </scene>
         <!--Coat Room-->
         <scene sceneID="RTb-vi-AGe">
             <objects>
-                <viewController id="wzE-FX-k5o" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wzE-FX-k5o" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nUL-Jw-Lpu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,15 +187,19 @@
                     <navigationItem key="navigationItem" title="Coat Room" id="T3K-kj-39d">
                         <barButtonItem key="backBarButtonItem" title="Coat Room" id="z6U-RO-W2U"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="2xQ-ab-EyW" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="hrm-7X-gdK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sCY-6F-yIA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="2xQ-ab-EyW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2161" y="139"/>
         </scene>
         <!--Library-->
         <scene sceneID="l1Z-KA-NkC">
             <objects>
-                <viewController id="WgW-eV-wzp" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WgW-eV-wzp" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u9V-UJ-Tze">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -248,15 +256,19 @@
                     <navigationItem key="navigationItem" title="Library" id="hSA-g8-YAc">
                         <barButtonItem key="backBarButtonItem" title="Library" id="jFX-lW-9VV"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="TV5-N5-TaH" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="Bfv-jr-bM6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LsZ-0D-2LO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="TV5-N5-TaH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3096" y="-589"/>
         </scene>
         <!--Secret Passage-->
         <scene sceneID="7b2-M7-KfI">
             <objects>
-                <viewController id="DG0-Oc-RZC" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DG0-Oc-RZC" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TWa-V6-1fI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -333,15 +345,19 @@
                     <navigationItem key="navigationItem" title="Secret Passage" id="Q0D-Rw-qC6">
                         <barButtonItem key="backBarButtonItem" title="Secret Passage" id="8Rl-rQ-l69"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="WYf-Z0-LnB" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="rOt-7X-L5h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h3I-LE-47R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="WYf-Z0-LnB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4093" y="-589"/>
         </scene>
         <!--Mysterious Lake-->
         <scene sceneID="kpR-FZ-syc">
             <objects>
-                <viewController id="Z40-rj-qIg" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Z40-rj-qIg" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cMM-iV-FV2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -398,15 +414,19 @@
                     <navigationItem key="navigationItem" title="Mysterious Lake" id="EpB-2A-RV4">
                         <barButtonItem key="backBarButtonItem" title="Mysterious Lake" id="wkA-mv-woO"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="MLK-ip-iNy" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="Wgo-1Y-ZRf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C85-63-b5N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="MLK-ip-iNy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6083" y="139"/>
         </scene>
         <!--Cursed Chalice-->
         <scene sceneID="GxA-2i-cgz">
             <objects>
-                <viewController id="qGU-BC-rva" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qGU-BC-rva" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l47-aH-D5Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -429,15 +449,19 @@
                     <navigationItem key="navigationItem" title="Cursed Chalice" id="XuV-ys-5sy">
                         <barButtonItem key="backBarButtonItem" title="Cursed Chalice" id="6V9-Xz-XtO"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="3u7-NR-eGH" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="9zF-tk-eWE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DDq-LA-U8k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="3u7-NR-eGH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="7322" y="139"/>
         </scene>
         <!--Dungeon-->
         <scene sceneID="AFW-XH-da9">
             <objects>
-                <viewController id="GqK-S7-xJN" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GqK-S7-xJN" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X0y-NU-PAs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -460,15 +484,19 @@
                     <navigationItem key="navigationItem" title="Dungeon" id="z74-fa-Wqy">
                         <barButtonItem key="backBarButtonItem" title="Dungeon" id="jh8-3e-08D"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="gNM-cA-oEa" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="36E-Vj-xAS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A6Z-rG-RdU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="gNM-cA-oEa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6083" y="-1372"/>
         </scene>
         <!--Labratory-->
         <scene sceneID="CNt-3q-j5S">
             <objects>
-                <viewController id="hPF-Er-bfm" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hPF-Er-bfm" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Wz-RS-X6g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -525,15 +553,19 @@
                     <navigationItem key="navigationItem" title="Labratory" id="izh-et-QwP">
                         <barButtonItem key="backBarButtonItem" title="Labratory" id="JSK-qW-zUg"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="k87-AV-zIc" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="sD0-YF-Wb9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rG0-lM-dX9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="k87-AV-zIc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6084" y="-589"/>
         </scene>
         <!--Generator-->
         <scene sceneID="GY8-yr-LxA">
             <objects>
-                <viewController id="mYO-Ow-NJa" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mYO-Ow-NJa" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RMk-RC-tXh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -556,15 +588,19 @@
                     <navigationItem key="navigationItem" title="Generator" id="kR2-xR-r39">
                         <barButtonItem key="backBarButtonItem" title="Generator" id="CnG-HZ-dm1"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="6TU-bI-t06" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="kAi-4o-N2e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ppO-c8-IbY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="6TU-bI-t06" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="7323" y="-589"/>
         </scene>
         <!--Dining Room-->
         <scene sceneID="1GZ-l4-FiO">
             <objects>
-                <viewController id="2fT-mw-2tU" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2fT-mw-2tU" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FUT-Sb-ZAc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -621,15 +657,19 @@
                     <navigationItem key="navigationItem" title="Dining Room" id="hpy-vW-AjA">
                         <barButtonItem key="backBarButtonItem" title="Dining Room" id="JmX-rV-4IG"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="UnV-Gh-la5" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="QWO-TD-yOY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q0H-bi-Yus" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="UnV-Gh-la5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3096" y="139"/>
         </scene>
         <!--Kitchen-->
         <scene sceneID="RDZ-Ww-XtI">
             <objects>
-                <viewController id="Kjg-pB-yLe" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Kjg-pB-yLe" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QaO-YA-8kD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -686,15 +726,19 @@
                     <navigationItem key="navigationItem" title="Kitchen" id="FZf-4y-Y4D">
                         <barButtonItem key="backBarButtonItem" title="Kitchen" id="CY5-HW-yjc"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="vm5-rk-pYT" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="Wkj-WK-Ru7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6oq-6r-vu2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="vm5-rk-pYT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4094" y="139"/>
         </scene>
         <!--Back Porch-->
         <scene sceneID="hbz-Xg-9YK">
             <objects>
-                <viewController id="WR5-yK-BMN" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WR5-yK-BMN" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0dh-7l-EaJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -717,15 +761,19 @@
                     <navigationItem key="navigationItem" title="Back Porch" id="Zpr-VS-58P">
                         <barButtonItem key="backBarButtonItem" title="Back Porch" id="WZM-mG-TyB"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="tkA-iO-Ba6" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="G9q-26-hqL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lft-N2-Rlt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="tkA-iO-Ba6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5094" y="139"/>
         </scene>
         <!--Bedroom-->
         <scene sceneID="sbT-i1-9UL">
             <objects>
-                <viewController id="V04-Vu-J0B" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="V04-Vu-J0B" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TI8-NX-u9x">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -748,15 +796,19 @@
                     <navigationItem key="navigationItem" title="Bedroom" id="Md1-HL-OIU">
                         <barButtonItem key="backBarButtonItem" title="Bedroom" id="a6n-eT-7zh"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="BbT-Qz-6mL" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="q3g-zA-ZPP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFm-X4-3IS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="BbT-Qz-6mL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4093" y="865"/>
         </scene>
         <!--Stair Up-->
         <scene sceneID="Lac-5T-qv7">
             <objects>
-                <viewController id="1ad-xT-qzc" customClass="ViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1ad-xT-qzc" customClass="SubViewController" customModule="UINavigationController" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gcX-r1-7HP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -823,8 +875,12 @@
                     <navigationItem key="navigationItem" title="Stair Up" id="QuM-5m-ai5">
                         <barButtonItem key="backBarButtonItem" title="Stair Up" id="n65-5z-0Gl"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="yIZ-ma-XVa" kind="unwind" identifier="unwindToDoorway" unwindAction="unwindToDoorwayWithUnwindSegue:" id="F2A-BJ-MDc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pyw-xL-PNu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="yIZ-ma-XVa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3096" y="865"/>
         </scene>
