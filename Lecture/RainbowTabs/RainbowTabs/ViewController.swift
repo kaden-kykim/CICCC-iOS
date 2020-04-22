@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .red
 //        tabbarItem = UITabBarItem(title: "Red", image: UIImage(named: "R"), selectedImage: UIImage(named: "R Selected"))
     }
 
