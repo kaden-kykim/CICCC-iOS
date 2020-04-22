@@ -61,22 +61,6 @@
             </objects>
             <point key="canvasLocation" x="-3142" y="752"/>
         </scene>
-        <!--Orange-->
-        <scene sceneID="9FK-Ut-eUK">
-            <objects>
-                <viewController id="YEd-oh-L1K" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cl1-PU-awY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="kNJ-76-glg"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Orange" image="O" selectedImage="O Selected" id="vf2-rl-4ML"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vyI-db-ode" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3142" y="752"/>
-        </scene>
         <!--Yellow-->
         <scene sceneID="EHQ-hu-C2w">
             <objects>
