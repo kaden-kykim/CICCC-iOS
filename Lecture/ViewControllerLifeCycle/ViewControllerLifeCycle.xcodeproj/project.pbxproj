@@ -13,6 +13,7 @@
 		6F3067CB24523122002C82CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F3067C924523122002C82CC /* Main.storyboard */; };
 		6F3067CD24523125002C82CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F3067CC24523125002C82CC /* Assets.xcassets */; };
 		6F3067D024523125002C82CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F3067CE24523125002C82CC /* LaunchScreen.storyboard */; };
+		6F3067D824523F9E002C82CC /* VCLLoggingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3067D724523F9E002C82CC /* VCLLoggingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		6F3067CC24523125002C82CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F3067CF24523125002C82CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F3067D124523125002C82CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F3067D724523F9E002C82CC /* VCLLoggingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCLLoggingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				6F3067C324523122002C82CC /* AppDelegate.swift */,
 				6F3067C524523122002C82CC /* SceneDelegate.swift */,
 				6F3067C724523122002C82CC /* ViewController.swift */,
+				6F3067D724523F9E002C82CC /* VCLLoggingViewController.swift */,
 				6F3067C924523122002C82CC /* Main.storyboard */,
 				6F3067CC24523125002C82CC /* Assets.xcassets */,
 				6F3067CE24523125002C82CC /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F3067D824523F9E002C82CC /* VCLLoggingViewController.swift in Sources */,
 				6F3067C824523122002C82CC /* ViewController.swift in Sources */,
 				6F3067C424523122002C82CC /* AppDelegate.swift in Sources */,
 				6F3067C624523122002C82CC /* SceneDelegate.swift in Sources */,
