@@ -9,7 +9,7 @@
 import UIKit
 
 class GreenViewController: UIViewController {
-
+    
     let centerBtn = CenterButton()
     
     override func viewDidLoad() {

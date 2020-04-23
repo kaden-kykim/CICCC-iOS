@@ -9,7 +9,7 @@
 import UIKit
 
 class GoViewController: UIViewController {
-
+    
     var color: String!
     
     override func viewDidLoad() {

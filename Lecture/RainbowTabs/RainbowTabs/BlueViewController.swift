@@ -9,7 +9,7 @@
 import UIKit
 
 class BlueViewController: UIViewController {
-
+    
     let centerBtn = CenterButton()
     
     override func viewDidLoad() {
