@@ -14,4 +14,5 @@ struct City {
     let precipitation: Double
     let icon: String
     let summary: String
+    let nationCode: String
 }

@@ -19,7 +19,7 @@ class CityViewController: UIViewController {
         let cityLabel = UILabel(frame: CGRect(x: view.bounds.width / 2 - 150, y: view.bounds.height / 2 - 200, width: 300, height: 50))
         cityLabel.text = city.name
         cityLabel.textAlignment = .center
-        cityLabel.font = UIFont(name: "Helvetica Neue", size: 50)
+        cityLabel.font = UIFont(name: "HelveticaNeue", size: 50)
         
         let butt = UIButton(frame: CGRect(x: view.bounds.width / 2 - 100, y: view.bounds.height / 2 - 25, width: 200, height: 50))
         butt.backgroundColor = #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1)
@@ -32,7 +32,9 @@ class CityViewController: UIViewController {
     }
     
     @objc func showWeatherDetails() {
-        
+        let detailsVC = DetailsViewController()
+        detailsVC.details = city
+        navigationController?.pushViewController(detailsVC, animated: true)
     }
 }
 

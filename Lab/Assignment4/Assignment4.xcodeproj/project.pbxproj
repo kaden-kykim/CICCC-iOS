@@ -13,6 +13,8 @@
 		4EFDB9092450F823004EBAA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EFDB9072450F823004EBAA0 /* LaunchScreen.storyboard */; };
 		4EFDB9112450F89F004EBAA0 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFDB9102450F89F004EBAA0 /* City.swift */; };
 		4EFDB9132450F8A8004EBAA0 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFDB9122450F8A8004EBAA0 /* CityViewController.swift */; };
+		6F3067DC24524D81002C82CC /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3067DB24524D81002C82CC /* DetailsViewController.swift */; };
+		6F3067DE245253D7002C82CC /* DetailsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3067DD245253D7002C82CC /* DetailsLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		4EFDB90A2450F823004EBAA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EFDB9102450F89F004EBAA0 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		4EFDB9122450F8A8004EBAA0 /* CityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
+		6F3067DB24524D81002C82CC /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		6F3067DD245253D7002C82CC /* DetailsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				4EFDB8FE2450F821004EBAA0 /* SceneDelegate.swift */,
 				4EFDB9102450F89F004EBAA0 /* City.swift */,
 				4EFDB9122450F8A8004EBAA0 /* CityViewController.swift */,
+				6F3067DB24524D81002C82CC /* DetailsViewController.swift */,
+				6F3067DD245253D7002C82CC /* DetailsLabel.swift */,
 				4EFDB9052450F823004EBAA0 /* Assets.xcassets */,
 				4EFDB9072450F823004EBAA0 /* LaunchScreen.storyboard */,
 				4EFDB90A2450F823004EBAA0 /* Info.plist */,
@@ -141,6 +147,8 @@
 				4EFDB8FD2450F821004EBAA0 /* AppDelegate.swift in Sources */,
 				4EFDB9112450F89F004EBAA0 /* City.swift in Sources */,
 				4EFDB8FF2450F821004EBAA0 /* SceneDelegate.swift in Sources */,
+				6F3067DE245253D7002C82CC /* DetailsLabel.swift in Sources */,
+				6F3067DC24524D81002C82CC /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,13 +285,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 25222AKG24;
+				DEVELOPMENT_TEAM = U2ZLLL9FT4;
 				INFOPLIST_FILE = Assignment4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dpapp.Assignment4;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.ciccc.wmad.kaden.Assignment4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -295,13 +303,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 25222AKG24;
+				DEVELOPMENT_TEAM = U2ZLLL9FT4;
 				INFOPLIST_FILE = Assignment4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dpapp.Assignment4;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.ciccc.wmad.kaden.Assignment4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
