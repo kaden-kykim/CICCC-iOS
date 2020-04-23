@@ -9,9 +9,9 @@
 import Foundation
 
 struct City {
-	let name: String
-	let temp: Double
-	let precipitation: Double
-	let icon: String
-	let summary: String
+    let name: String
+    let temp: Double
+    let precipitation: Double
+    let icon: String
+    let summary: String
 }
