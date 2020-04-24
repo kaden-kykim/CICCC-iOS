@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet var amountTextField: UITextField!
     
     // for Simulator
     var keyboardHalfHeight: CGFloat = 0
     
+    // MARK: - view controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         amountTextField.delegate = self
@@ -60,10 +61,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         amountTextField.resignFirstResponder()
     }
     
+}
+
+// MARK: - UITextFieldDelegate
+
+extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
 }
-
