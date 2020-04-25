@@ -169,4 +169,13 @@ class QuestionViewController: UIViewController {
         rangedLabel2.text = answers.last?.text
     }
     
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ResultsSegue" {
+            let resultsViewController = segue.destination as! ResultsViewController
+            resultsViewController.responses = answersChosen
+        }
+    }
+    
 }
