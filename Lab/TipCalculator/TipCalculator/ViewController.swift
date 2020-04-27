@@ -17,4 +17,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func calculateTip(_ sender: UIButton) {
+        if let amountText = billAmountTextField.text, let amount = Float(amountText) {
+            var tip = Float(amount) * 0.15
+        }
+    }
 }
