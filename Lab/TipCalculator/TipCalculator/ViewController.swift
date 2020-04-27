@@ -34,6 +34,10 @@ class ViewController: UIViewController {
         dismissKeyboard()
     }
     
+    @IBAction func adjustTipPercentage(_ sender: UISlider) {
+        tipPercentageTextField.text = String(Int(sender.value))
+    }
+    
     var keyboardHalfHeight: CGFloat = 0
     @objc func keyboardWillShow(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
