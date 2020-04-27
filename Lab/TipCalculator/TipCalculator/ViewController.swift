@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var billAmountTextField: UITextField!
     @IBOutlet var tipPercentageTextField: UITextField!
+    @IBOutlet var tipPercentageSlider: UISlider!
     @IBOutlet var tipAmountLabel: UILabel!
     @IBOutlet var totalAmountLabel: UILabel!
     
@@ -25,17 +26,40 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(tabGestureRecognizer)
     }
     
-    @IBAction func calculateTip(_ sender: UIButton) {
+    @IBAction func adjustTipPercentage(_ sender: UISlider) {
+        tipPercentageTextField.text = String(Int(sender.value))
+        calculateTip()
+    }
+    
+    func calculateTip() {
         if let amountText = billAmountTextField.text, let amount = Float(amountText), let tipPercentText = tipPercentageTextField.text, let tipPercent = Float(tipPercentText) {
             let tip = Float(amount) * (tipPercent / 100)
             tipAmountLabel.text = String.init(format: "$ %.2f", tip)
             totalAmountLabel.text = String.init(format: "$ %.2f", amount + tip)
+        } else {
+            tipAmountLabel.text = "$ 0.00"
+            totalAmountLabel.text = "$ 0.00"
         }
-        dismissKeyboard()
     }
     
-    @IBAction func adjustTipPercentage(_ sender: UISlider) {
-        tipPercentageTextField.text = String(Int(sender.value))
+    @IBAction func changedAmount(_ sender: UITextField) {
+        calculateTip()
+    }
+    
+    @IBAction func changedTipPercentage(_ sender: UITextField) {
+        if let tipPercentageText = tipPercentageTextField.text, let tipPercent = Float(tipPercentageText) {
+            tipPercentageSlider.value = tipPercent
+        } else {
+            tipPercentageSlider.value = 0.0
+        }
+        calculateTip()
+    }
+    
+    @IBAction func textFieldTapped(_ sender: UITextField) {
+        DispatchQueue.main.async {
+            let newPosition = sender.endOfDocument
+            sender.selectedTextRange = sender.textRange(from: newPosition, to: newPosition)
+        }
     }
     
     var keyboardHalfHeight: CGFloat = 0
@@ -54,7 +78,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc func dismissKeyboard() {
+    @objc func dismissKeyboard(_ recognizer: UITapGestureRecognizer) {
         billAmountTextField.resignFirstResponder()
         tipPercentageTextField.resignFirstResponder()
     }
