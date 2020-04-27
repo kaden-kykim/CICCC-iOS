@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet var billAmountTextField: UITextField!
+    @IBOutlet var tipAmountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class ViewController: UIViewController {
     @IBAction func calculateTip(_ sender: UIButton) {
         if let amountText = billAmountTextField.text, let amount = Float(amountText) {
             let tip = Float(amount) * 0.15
+            tipAmountLabel.text = String(tip)
         }
     }
 }
