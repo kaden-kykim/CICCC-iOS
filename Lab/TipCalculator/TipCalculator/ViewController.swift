@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         if let tipPercentageText = tipPercentageTextField.text, let tipPercent = Float(tipPercentageText) {
             tipPercentageSlider.value = tipPercent
         } else {
-            tipPercentageSlider.value = 0.0
+            tipPercentageSlider.value = 0
         }
         calculateTip()
     }
