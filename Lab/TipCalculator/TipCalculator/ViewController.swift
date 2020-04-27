@@ -62,19 +62,17 @@ class ViewController: UIViewController {
         }
     }
     
-    var keyboardHalfHeight: CGFloat = 0
     @objc func keyboardWillShow(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if view.frame.origin.y == 0 {
                 view.frame.origin.y -= keyboardSize.height / 2
-                keyboardHalfHeight = keyboardSize.height / 2
             }
         }
     }
     
     @objc func keyboardWillHide(notification: Notification) {
         if view.frame.origin.y != 0 {
-            view.frame.origin.y += keyboardHalfHeight
+            view.frame.origin.y = 0
         }
     }
     
