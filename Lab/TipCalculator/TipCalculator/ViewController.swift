@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet var billAmountTextField: UITextField!
     @IBOutlet var tipPercentageTextField: UITextField!
     @IBOutlet var tipAmountLabel: UILabel!
+    @IBOutlet var totalAmountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +28,10 @@ class ViewController: UIViewController {
     @IBAction func calculateTip(_ sender: UIButton) {
         if let amountText = billAmountTextField.text, let amount = Float(amountText), let tipPercentText = tipPercentageTextField.text, let tipPercent = Float(tipPercentText) {
             let tip = Float(amount) * (tipPercent / 100)
-            tipAmountLabel.text = String.init(format: "%.2f", tip)
+            tipAmountLabel.text = String.init(format: "$ %.2f", tip)
+            totalAmountLabel.text = String.init(format: "$ %.2f", amount + tip)
         }
+        dismissKeyboard()
     }
     
     var keyboardHalfHeight: CGFloat = 0
@@ -47,7 +50,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc func dismissKeyboard(_ recognizer: UITapGestureRecognizer) {
+    @objc func dismissKeyboard() {
         billAmountTextField.resignFirstResponder()
         tipPercentageTextField.resignFirstResponder()
     }
