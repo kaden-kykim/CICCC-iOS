@@ -49,7 +49,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(names[indexPath.row])
         performSegue(withIdentifier: "Detail", sender: self)
     }
     
