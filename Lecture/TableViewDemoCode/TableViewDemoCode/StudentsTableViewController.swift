@@ -15,13 +15,12 @@ class StudentsTableViewController: UITableViewController, AddTableViewController
         static let student = "StudentsCell"
     }
     
-    private let cellId = "StudentsCell"
-    
     private var students = ["Derrick", "Aaron", "Daniel", "Hotsuma", "Rick", "Kaden", "Naoki", "Mika"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.title = "Students"
         tableView.register(StudentTableViewCell.self, forCellReuseIdentifier: CellIdentifier.student)
         tableView.register(AddTableViewCell.self, forCellReuseIdentifier: CellIdentifier.add)
@@ -41,17 +40,19 @@ class StudentsTableViewController: UITableViewController, AddTableViewController
     }
     
     // MARK: - table view data source
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return students.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! StudentTableViewCell
-        cell.textLabel?.text = students[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.student, for: indexPath) as! StudentTableViewCell
+        cell.nameLabel.text = students[indexPath.row]
         return cell
     }
     
     // MARK: - table view delegate
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
         detailVC.name = students[indexPath.row]

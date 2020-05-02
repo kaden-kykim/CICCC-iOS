@@ -14,8 +14,6 @@ protocol AddTableViewControllerDelegate: class {
 
 class AddTableViewController: UITableViewController {
 
-    private let cellId = "AddCell"
-    
     let addCell: AddTableViewCell = {
         let cell = AddTableViewCell()
         cell.accessoryType = .detailDisclosureButton
@@ -52,7 +50,7 @@ class AddTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        print("Hello")
+        print(#function)
     }
     
 }
