@@ -16,6 +16,8 @@ class AddEditEmojiTableViewController: UITableViewController {
     @IBOutlet var usageTextField: UITextField!
     @IBOutlet var saveButton: UIBarButtonItem!
     
+    static let unwindSegueSaveId = "saveUnwind"
+    
     var emoji: Emoji?
 
     override func viewDidLoad() {
@@ -35,6 +37,14 @@ class AddEditEmojiTableViewController: UITableViewController {
         updateSaveButtonState()
     }
     
+    @IBAction func returnKeyPressed(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     func updateSaveButtonState() {
         let symbolText = symbolTextField.text ?? ""
         let nameText = nameTextField.text ?? ""
@@ -48,7 +58,7 @@ class AddEditEmojiTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        guard segue.identifier == "saveUnwind" else { return }
+        guard segue.identifier == AddEditEmojiTableViewController.unwindSegueSaveId else { return }
         
         let symbol = symbolTextField.text ?? ""
         let name = nameTextField.text ?? ""

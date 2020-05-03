@@ -106,6 +106,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
+                                                        <action selector="returnKeyPressed:" destination="FNc-9H-2Ja" eventType="editingDidEnd" id="qSA-YD-E8S"/>
                                                         <action selector="textEditingChanged:" destination="FNc-9H-2Ja" eventType="editingChanged" id="iPj-Ek-ptX"/>
                                                     </connections>
                                                 </textField>
@@ -134,6 +135,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
+                                                        <action selector="returnKeyPressed:" destination="FNc-9H-2Ja" eventType="editingDidEnd" id="xKf-Xz-njX"/>
                                                         <action selector="textEditingChanged:" destination="FNc-9H-2Ja" eventType="editingChanged" id="Prx-MX-gFV"/>
                                                     </connections>
                                                 </textField>
@@ -162,6 +164,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
+                                                        <action selector="returnKeyPressed:" destination="FNc-9H-2Ja" eventType="editingDidEnd" id="JYw-6H-kJ2"/>
                                                         <action selector="textEditingChanged:" destination="FNc-9H-2Ja" eventType="editingChanged" id="9xT-ur-ee7"/>
                                                     </connections>
                                                 </textField>
@@ -190,6 +193,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
+                                                        <action selector="returnKeyPressed:" destination="FNc-9H-2Ja" eventType="editingDidEnd" id="3af-Ds-sFn"/>
                                                         <action selector="textEditingChanged:" destination="FNc-9H-2Ja" eventType="editingChanged" id="Yki-YB-YYf"/>
                                                     </connections>
                                                 </textField>
@@ -213,6 +217,7 @@
                     <navigationItem key="navigationItem" id="P8Q-wk-diO">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="dM1-hQ-BaV">
                             <connections>
+                                <action selector="cancelButtonTapped:" destination="FNc-9H-2Ja" id="fBd-cX-zs4"/>
                                 <segue destination="Bpt-cF-PPw" kind="unwind" unwindAction="unwindToEmojiTableViewWithSegue:" id="hZ1-A5-jtf"/>
                             </connections>
                         </barButtonItem>
