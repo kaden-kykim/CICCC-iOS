@@ -12,6 +12,7 @@
 		6F4E42DF2460AEE500E26717 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F4E42DD2460AEE500E26717 /* Main.storyboard */; };
 		6F4E42E12460AEE800E26717 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F4E42E02460AEE800E26717 /* Assets.xcassets */; };
 		6F4E42E42460AEE800E26717 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F4E42E22460AEE800E26717 /* LaunchScreen.storyboard */; };
+		6F4E42ED2460B23F00E26717 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4E42EC2460B23F00E26717 /* Todo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		6F4E42E02460AEE800E26717 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F4E42E32460AEE800E26717 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F4E42E52460AEE800E26717 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F4E42EC2460B23F00E26717 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,23 @@
 		6F4E42D62460AEE500E26717 /* SimpleTodoApp */ = {
 			isa = PBXGroup;
 			children = (
+				6F4E42EB2460B1FD00E26717 /* Supporting Files */,
+				6F4E42DD2460AEE500E26717 /* Main.storyboard */,
+				6F4E42EC2460B23F00E26717 /* Todo.swift */,
+			);
+			path = SimpleTodoApp;
+			sourceTree = "<group>";
+		};
+		6F4E42EB2460B1FD00E26717 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				6F4E42D72460AEE500E26717 /* AppDelegate.swift */,
 				6F4E42D92460AEE500E26717 /* SceneDelegate.swift */,
-				6F4E42DD2460AEE500E26717 /* Main.storyboard */,
 				6F4E42E02460AEE800E26717 /* Assets.xcassets */,
 				6F4E42E22460AEE800E26717 /* LaunchScreen.storyboard */,
 				6F4E42E52460AEE800E26717 /* Info.plist */,
 			);
-			path = SimpleTodoApp;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F4E42D82460AEE500E26717 /* AppDelegate.swift in Sources */,
+				6F4E42ED2460B23F00E26717 /* Todo.swift in Sources */,
 				6F4E42DA2460AEE500E26717 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
