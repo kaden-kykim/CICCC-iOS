@@ -1,8 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bAL-W3-drF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Todo Items-->
+        <scene sceneID="Hlv-R9-CnD">
+            <objects>
+                <tableViewController id="L2h-uv-8Uk" customClass="TodoTableViewController" customModule="SimpleTodoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="noE-yU-mev">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoCell" id="QOg-xo-0XM" customClass="TodoTableViewCell" customModule="SimpleTodoApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="87.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QOg-xo-0XM" id="p4T-CB-Az8">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="87.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="hv7-zK-pn2">
+                                            <rect key="frame" x="16" y="5" width="382" height="77.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OS-EU-YDj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="40.5"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Modern C++">
+                                                            <attributes>
+                                                                <font key="NSFont" size="25" name="Noteworthy-Bold"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqr-3X-vdM">
+                                                    <rect key="frame" x="0.0" y="35.5" width="382" height="19.5"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="May 4, 2020 3:16PM">
+                                                            <attributes>
+                                                                <font key="NSFont" size="12" name="Noteworthy-Light"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYq-ZY-Xs4">
+                                                    <rect key="frame" x="0.0" y="50" width="382" height="27.5"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Study English(IELTS) with Speaking, Writing parts and dictation for the Listening part">
+                                                            <attributes>
+                                                                <color key="NSColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="17" name="Noteworthy-Light"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="hv7-zK-pn2" secondAttribute="bottom" constant="5" id="EqZ-0J-oZ2"/>
+                                        <constraint firstAttribute="trailing" secondItem="hv7-zK-pn2" secondAttribute="trailing" constant="16" id="fs8-tk-sW1"/>
+                                        <constraint firstItem="hv7-zK-pn2" firstAttribute="leading" secondItem="p4T-CB-Az8" secondAttribute="leading" constant="16" id="vqW-Sj-79u"/>
+                                        <constraint firstItem="hv7-zK-pn2" firstAttribute="top" secondItem="p4T-CB-Az8" secondAttribute="top" constant="5" id="xh4-Bp-Xzc"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="deadlineLabel" destination="Fqr-3X-vdM" id="2yf-2e-kBx"/>
+                                    <outlet property="descLabel" destination="GYq-ZY-Xs4" id="dG5-WT-qCp"/>
+                                    <outlet property="titleLabel" destination="6OS-EU-YDj" id="fyV-Op-v1l"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="L2h-uv-8Uk" id="6Er-Sk-umZ"/>
+                            <outlet property="delegate" destination="L2h-uv-8Uk" id="I0p-g9-BHA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Todo Items" id="DnM-L3-r2q"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aa9-S6-IdB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-212" y="134"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nwu-VI-xDw">
+            <objects>
+                <navigationController id="bAL-W3-drF" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="GiS-km-ssF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="L2h-uv-8Uk" kind="relationship" relationship="rootViewController" id="9ua-Is-jBH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t16-11-F9v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1130" y="134"/>
+        </scene>
+    </scenes>
 </document>
