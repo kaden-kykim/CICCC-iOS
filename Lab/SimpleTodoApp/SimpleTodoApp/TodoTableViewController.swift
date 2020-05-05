@@ -8,10 +8,12 @@
 
 import UIKit
 
-class TodoTableViewController: UITableViewController {
+class TodoTableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
     
     struct SegueIdentifier {
         static let detailTodo = "DetailTodo"
+        static let addTodo = "AddTodo"
+        static let editTodo = "EditTodo"
     }
     
     private let todoCellId = "TodoCell"
@@ -100,9 +102,26 @@ class TodoTableViewController: UITableViewController {
             let navCtrl = segue.destination as! UINavigationController
             let detailTVC = navCtrl.topViewController as! DetailTodoTableViewController
             detailTVC.setDetailItem(from: todo)
+        } else if segue.identifier == SegueIdentifier.addTodo {
+            let addVC = (segue.destination as! UINavigationController).topViewController as! AddEditTodoTableViewController
+            addVC.date = Calendar.current.startOfDay(for: Date()).addingTimeInterval(DAY_IN_SEC)
+            addVC.toAdd = true
         }
     }
     
-    @IBAction func unwindToTodoTableView(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToTodoTableView(segue: UIStoryboardSegue) {
+        guard segue.identifier == AddEditTodoTableViewController.unwindSegueAddEditId,
+            let srcVC = segue.source as? AddEditTodoTableViewController, let todo = srcVC.todo
+            else { return }
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            todos[selectedIndexPath.section][selectedIndexPath.row] = todo
+            tableView.reloadRows(at: [selectedIndexPath], with: .none)
+        } else {
+            let section = todo.priority.rawValue
+            let newIndexPath = IndexPath(row: todos[section].count, section: section)
+            todos[section].append(todo)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+    }
     
 }

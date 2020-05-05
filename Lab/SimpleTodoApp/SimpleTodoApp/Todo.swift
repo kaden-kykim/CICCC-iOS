@@ -38,5 +38,7 @@ var dbTodos: [Todo] = [
     Todo(title: "Fix GRUB", todoDescription: "Delete unnecessary booting list for CentOS",
          deadline: Calendar.current.startOfDay(for: Date()).addingTimeInterval(DAY_IN_SEC * 3), priority: .low),
     Todo(title: "Laundry 😩", todoDescription: "Do laundry...😞",
-         deadline: Calendar.current.startOfDay(for: Date()).addingTimeInterval(DAY_IN_SEC * 5), priority: .low)
+        deadline: Calendar.current.startOfDay(for: Date()).addingTimeInterval(DAY_IN_SEC * 5), priority: .low),
+    Todo(title: "English Name", todoDescription: "",
+         deadline: Calendar.current.startOfDay(for: Date()).addingTimeInterval(DAY_IN_SEC * 5), priority: .high)
 ]
