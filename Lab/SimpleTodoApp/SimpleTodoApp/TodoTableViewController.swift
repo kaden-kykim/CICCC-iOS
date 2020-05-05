@@ -10,6 +10,10 @@ import UIKit
 
 class TodoTableViewController: UITableViewController {
     
+    struct SegueIdentifier {
+        static let detailTodo = "DetailTodo"
+    }
+    
     private let todoCellId = "TodoCell"
     
     private var todos: [[Todo]] = []
@@ -17,9 +21,6 @@ class TodoTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = self.editButtonItem
-        
-        // Uncomment the following line to preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
         
         todos.append(dbTodos.filter{ ($0 as Todo).priority == .high })
         todos.append(dbTodos.filter{ ($0 as Todo).priority == .medium })
@@ -77,10 +78,10 @@ class TodoTableViewController: UITableViewController {
      }
      */
     
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
+    // Override to support rearranging the table view.
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        
+    }
     
     /*
      // Override to support conditional rearranging of the table view.
@@ -90,14 +91,18 @@ class TodoTableViewController: UITableViewController {
      }
      */
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueIdentifier.detailTodo {
+            let indexPath = tableView.indexPathForSelectedRow!
+            let todo = todos[indexPath.section][indexPath.row]
+            let navCtrl = segue.destination as! UINavigationController
+            let detailTVC = navCtrl.topViewController as! DetailTodoTableViewController
+            detailTVC.setDetailItem(from: todo)
+        }
+    }
+    
+    @IBAction func unwindToTodoTableView(segue: UIStoryboardSegue) {}
     
 }
