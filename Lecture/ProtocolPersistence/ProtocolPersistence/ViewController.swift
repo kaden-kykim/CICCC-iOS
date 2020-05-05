@@ -30,20 +30,39 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .green
         let s1 = Student(firstName: "Derrick", lastName: "Park")
-        let s2 = Student(firstName: "Andre", lastName: "Majia")
-        let s3 = Student(firstName: "Douglas", lastName: "Ciole")
-        let s4 = Student(firstName: "Kaden", lastName: "Kim")
-        let s5 = Student(firstName: "Wenda", lastName: "Li")
-        let s6 = Student(firstName: "Richard", lastName: "Cho")
-        let s7 = Student(firstName: "Yusuke", lastName: "Takahashi")
-        let s8 = Student(firstName: "Aaron", lastName: "Huang")
+//        let s2 = Student(firstName: "Andre", lastName: "Majia")
+//        let s3 = Student(firstName: "Douglas", lastName: "Ciole")
+//        let s4 = Student(firstName: "Kaden", lastName: "Kim")
+//        let s5 = Student(firstName: "Wenda", lastName: "Li")
+//        let s6 = Student(firstName: "Richard", lastName: "Cho")
+//        let s7 = Student(firstName: "Yusuke", lastName: "Takahashi")
+//        let s8 = Student(firstName: "Aaron", lastName: "Huang")
+//
+//        print(s1 == s2)
+//        let students = [s1, s2, s3, s4, s5, s6, s7, s8]
+//        let sorted = students.sorted(by: <)
+//        print(sorted)
         
-        print(s1 == s2)
-        let students = [s1, s2, s3, s4, s5, s6, s7, s8]
-        let sorted = students.sorted(by: <)
-        print(sorted)
+        // Encode s1 into JSON
+        // 1. create an encoder
+        let jsonEncoder = JSONEncoder()
+        // 2. encode -> Data: a bag of bits
+        if let encodedJson = try? jsonEncoder.encode(s1) {
+            print(String(data: encodedJson, encoding: .utf8)!)
+            
+            // Decode encodedJson into Student object
+            // 1. create a decoder
+            let jsonDecoder = JSONDecoder()
+            // 2. decode
+            do {
+                let obj = try jsonDecoder.decode(Student.self, from: encodedJson)
+                print(obj)
+            } catch (let err) {
+                // except declaring the error argument, 'error' is default one
+                print(err.localizedDescription)
+            }
+        }
+        
     }
 
-
 }
-
