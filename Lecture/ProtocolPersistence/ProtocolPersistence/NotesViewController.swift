@@ -24,12 +24,19 @@ class NotesViewController: UIViewController {
         let newNote = Note(title: "Grocery Run", text: "Pick up some coconut water", timestamp: Date())
         // Object to Property list
         let propertyListEncoder = PropertyListEncoder()
-        if let encodedNote = try? propertyListEncoder.encode(newNote) {
-            print(encodedNote)
+        if let _ = try? propertyListEncoder.encode(newNote) {
+            // 1. access to Documents directory using FileManager
+            // Singleton Object: FileManager.default
+            let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let archiveURL = documentDirectory.appendingPathComponent("notes_test").appendingPathExtension("plist")
+            
+//            try? encodedNote.write(to: archiveURL, options: .noFileProtection)
             
             let propertyListDecoder = PropertyListDecoder()
-            if let decodedNote = try? propertyListDecoder.decode(Note.self, from: encodedNote) {
-                print(decodedNote)
+            if let retrievedNoteData = try? Data(contentsOf: archiveURL) {
+                if let decodedNote = try? propertyListDecoder.decode(Note.self, from: retrievedNoteData) {
+                    print(decodedNote)
+                }
             }
         }
     }
