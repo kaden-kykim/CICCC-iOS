@@ -29,6 +29,11 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
         todos.append(dbTodos.filter{ ($0 as Todo).priority == .low })
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,12 +50,7 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return todos[Priority.high.rawValue].count
-        case 1: return todos[Priority.medium.rawValue].count
-        case 2: return todos[Priority.low.rawValue].count
-        default: return 0
-        }
+        return todos[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,38 +60,40 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
         return cell
     }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    // Override to support editing the table view.
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
+//    }
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return UISwipeActionsConfiguration(actions: [
+            UIContextualAction(style: .destructive, title: "Remove", handler: { [weak self] (action, view, handler) in
+                // update the model
+                self?.todos[indexPath.section].remove(at: indexPath.row)
+                // update table view
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+        ])
+    }
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: "Complete", handler: { [weak self] (action, view, handler) in
+            if let complete = self?.todos[indexPath.section][indexPath.row].isCompleted {
+                self?.todos[indexPath.section][indexPath.row].isCompleted = !complete
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            
+        })
+        action.backgroundColor = .green
+        return UISwipeActionsConfiguration(actions: [action])
+    }
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         
     }
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
     
     // MARK: - Navigation
     
