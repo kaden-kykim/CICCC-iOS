@@ -62,7 +62,7 @@ class ViewController: UIViewController {
 //                print(err.localizedDescription)
 //            }
 //        }
-        fetchStarwarsCharacter("https://swapi.dev/api/people/1/")
+//        fetchStarwarsCharacter("https://swapi.dev/api/people/1/")
     }
     
     private func fetchStarwarsCharacter(_ urlString: String) {

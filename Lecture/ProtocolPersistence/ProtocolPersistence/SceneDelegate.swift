@@ -20,7 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = ViewController()
+//        window?.rootViewController = ViewController()
+        window?.rootViewController = NotesViewController()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
