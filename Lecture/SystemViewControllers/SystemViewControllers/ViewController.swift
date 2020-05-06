@@ -19,7 +19,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     }
 
     @IBAction func shareButtonTapped(_ sender: UIButton) {
-        
+        guard let image = imageView.image else { return }
+        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        present(activityController, animated: true, completion: nil)
     }
     
     @IBAction func safariButtonTapped(_ sender: UIButton) {
