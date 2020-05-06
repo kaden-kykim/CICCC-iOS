@@ -8,8 +8,9 @@
 
 import UIKit
 import SafariServices
+import MessageUI
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class ViewController: UIViewController, MFMailComposeViewControllerDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     @IBOutlet var imageView: UIImageView!
     
@@ -17,7 +18,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
     @IBAction func shareButtonTapped(_ sender: UIButton) {
         guard let image = imageView.image else { return }
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
@@ -36,7 +37,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     @IBAction func camaraButtonTapped(_ sender: UIButton) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-
+        
         let alertController = UIAlertController(title: "Choose Image Source", message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
@@ -68,7 +69,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     }
     
     @IBAction func emailButtonTapped(_ sender: UIButton) {
+        // Same as guard
+        if !MFMailComposeViewController.canSendMail() {
+            print("Can not send email")
+            return
+        }
         
+        // You have to use the apple system Mail application (logged in - email account)
+        let mailComposer = MFMailComposeViewController()
+        mailComposer.mailComposeDelegate = self
+        mailComposer.setToRecipients(["abcd@gmail.com"])
+        mailComposer.setSubject("[Urgent] You've just won $1,000,000")
+        mailComposer.setMessageBody("JK", isHTML: false)
+        
+        present(mailComposer, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        // User has finished sending an email
+        dismiss(animated: true, completion: nil)
     }
     
 }
