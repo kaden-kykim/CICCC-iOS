@@ -60,34 +60,29 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
         return cell
     }
     
-    // Override to support editing the table view.
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        }
-//    }
-    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [
             UIContextualAction(style: .destructive, title: "Remove", handler: { [weak self] (action, view, handler) in
-                // update the model
                 self?.todos[indexPath.section].remove(at: indexPath.row)
-                // update table view
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                handler(true)
             })
         ])
     }
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let isCompleted = self.todos[indexPath.section][indexPath.row].isCompleted
         let action = UIContextualAction(style: .normal, title: "Complete", handler: { [weak self] (action, view, handler) in
-            if let complete = self?.todos[indexPath.section][indexPath.row].isCompleted {
-                self?.todos[indexPath.section][indexPath.row].isCompleted = !complete
-                tableView.reloadRows(at: [indexPath], with: .automatic)
-            }
-            
+            self?.todos[indexPath.section][indexPath.row].isCompleted = !isCompleted
+            handler(true)
         })
-        action.backgroundColor = .green
+        action.backgroundColor = (isCompleted) ? .gray : .green
         return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    override func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        setEditing(false, animated: false)
+        tableView.reloadData()
     }
     
     // Override to support rearranging the table view.
