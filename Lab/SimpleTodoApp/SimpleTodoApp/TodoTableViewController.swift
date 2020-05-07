@@ -75,6 +75,7 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
         let isCompleted = self.todos[indexPath.section][indexPath.row].isCompleted
         let action = UIContextualAction(style: .normal, title: "Complete", handler: { [weak self] (action, view, handler) in
             self?.todos[indexPath.section][indexPath.row].isCompleted = !isCompleted
+            self?.setEditing(false, animated: false)
             handler(true)
         })
         action.backgroundColor = (isCompleted) ? .gray : .blue
@@ -82,8 +83,9 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
     }
     
     override func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
-        setEditing(false, animated: false)
-        tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+            if !self.isEditing { tableView.reloadData() }
+        }
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
