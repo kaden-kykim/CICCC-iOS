@@ -16,6 +16,8 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
         static let editTodo = "EditTodo"
     }
     
+    @IBOutlet var orderByButton: UIBarButtonItem!
+    
     private let todoCellId = "TodoCell"
     
     private var todos: [[Todo]] = []
@@ -49,6 +51,7 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
             todos.append(tmpTodos.filter{ ($0 as Todo).priority == .low })
         }
         orderByPriority = !orderByPriority
+        orderByButton.image = UIImage.init(systemName: (orderByPriority) ? "line.horizontal.3.decrease.circle" : "line.horizontal.3.decrease.circle.fill")
         tableView.reloadData()
     }
     

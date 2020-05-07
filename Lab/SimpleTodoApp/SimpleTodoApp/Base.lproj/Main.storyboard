@@ -122,6 +122,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="orderByButton" destination="5UW-JX-D2G" id="NRY-6Z-dZZ"/>
                         <segue destination="y9u-Q5-jTu" kind="show" identifier="EditTodo" id="ndv-N2-iSE"/>
                     </connections>
                 </tableViewController>
