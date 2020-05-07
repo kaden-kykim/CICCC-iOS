@@ -94,7 +94,10 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        
+        var todo = todos[fromIndexPath.section].remove(at: fromIndexPath.row)
+        todo.priority = Priority.init(rawValue: to.section)!
+        todos[to.section].insert(todo, at: to.row)
+        tableView.reloadData()
     }
     
     // MARK: - Navigation
