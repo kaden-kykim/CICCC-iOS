@@ -21,15 +21,28 @@ class AddEditTodoTableViewController: UITableViewController, SetDateDelegate {
 
     static let unwindSegueAddEditId = "addEditUnwind"
     
-    var toAdd: Bool!
-    var date: Date!
-    
     var todo: Todo?
+    var selectedIndexPath: IndexPath?
+    var date: Date!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
-        rightBarButtonItem.title = toAdd ? "Add" : "Edit"
+        
+        if let todo = todo {
+            navigationItem.title = "Edit Todo"
+            rightBarButtonItem.title = "Edit"
+            titleTextField.text = todo.title
+            prioritySegCtrl.selectedSegmentIndex = todo.priority.rawValue
+            date = todo.deadline
+            completeSwitch.isOn = todo.isCompleted
+            descriptionTextView.text = todo.todoDescription
+        } else {
+            navigationItem.title = "Add Todo"
+            rightBarButtonItem.title = "Add"
+            date = Calendar.current.startOfDay(for: Date()).addingTimeInterval(DAY_IN_SEC)
+        }
+        todo = nil
         
         deadlineDateLabel.isUserInteractionEnabled = true
         deadlineDateLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.deadlineDateTapped(_:))))
@@ -37,8 +50,8 @@ class AddEditTodoTableViewController: UITableViewController, SetDateDelegate {
         descriptionView.clipsToBounds = true
         descriptionView.layer.borderWidth = 1
         descriptionView.layer.borderColor = UIColor.tertiaryLabel.cgColor
-        updateDeadlineText()
         
+        updateDeadlineText()
         updateAddEditButtonState()
     }
     

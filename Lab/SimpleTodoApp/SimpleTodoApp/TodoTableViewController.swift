@@ -54,8 +54,9 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let todo = todos[indexPath.section][indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: todoCellId, for: indexPath) as! TodoTableViewCell
-        cell.update(with: todos[indexPath.section][indexPath.row])
+        cell.update(with: todo)
         cell.showsReorderControl = true
         return cell
     }
@@ -76,7 +77,7 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
             self?.todos[indexPath.section][indexPath.row].isCompleted = !isCompleted
             handler(true)
         })
-        action.backgroundColor = (isCompleted) ? .gray : .green
+        action.backgroundColor = (isCompleted) ? .gray : .blue
         return UISwipeActionsConfiguration(actions: [action])
     }
     
@@ -85,6 +86,12 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
         tableView.reloadData()
     }
     
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        if !isEditing {
+            performSegue(withIdentifier: SegueIdentifier.editTodo, sender: indexPath)
+        }
+    }
+
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         
@@ -99,10 +106,11 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
             let navCtrl = segue.destination as! UINavigationController
             let detailTVC = navCtrl.topViewController as! DetailTodoTableViewController
             detailTVC.setDetailItem(from: todo)
-        } else if segue.identifier == SegueIdentifier.addTodo {
-            let addVC = (segue.destination as! UINavigationController).topViewController as! AddEditTodoTableViewController
-            addVC.date = Calendar.current.startOfDay(for: Date()).addingTimeInterval(DAY_IN_SEC)
-            addVC.toAdd = true
+        } else if segue.identifier == SegueIdentifier.editTodo {
+            guard let indexPath = sender as? IndexPath else { return }
+            let editVC = (segue.destination as! UINavigationController).topViewController as! AddEditTodoTableViewController
+            editVC.selectedIndexPath = indexPath
+            editVC.todo = todos[indexPath.section][indexPath.row]
         }
     }
     
@@ -110,7 +118,7 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
         guard segue.identifier == AddEditTodoTableViewController.unwindSegueAddEditId,
             let srcVC = segue.source as? AddEditTodoTableViewController, let todo = srcVC.todo
             else { return }
-        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+        if let selectedIndexPath = srcVC.selectedIndexPath {
             todos[selectedIndexPath.section][selectedIndexPath.row] = todo
             tableView.reloadRows(at: [selectedIndexPath], with: .none)
         } else {

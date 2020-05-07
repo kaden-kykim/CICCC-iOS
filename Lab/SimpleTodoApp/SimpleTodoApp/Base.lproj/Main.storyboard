@@ -15,34 +15,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoCell" id="QOg-xo-0XM" customClass="TodoTableViewCell" customModule="SimpleTodoApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="87.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="TodoCell" id="QOg-xo-0XM" customClass="TodoTableViewCell" customModule="SimpleTodoApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QOg-xo-0XM" id="p4T-CB-Az8">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="87.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="351" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="hv7-zK-pn2">
-                                            <rect key="frame" x="16" y="5" width="382" height="77.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hv7-zK-pn2">
+                                            <rect key="frame" x="16" y="5" width="319" height="65"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OS-EU-YDj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="40.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="30.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Modern C++">
                                                             <attributes>
-                                                                <font key="NSFont" size="25" name="Noteworthy-Bold"/>
+                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <font key="NSFont" size="25" name="HelveticaNeue-Bold"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqr-3X-vdM">
-                                                    <rect key="frame" x="0.0" y="35.5" width="382" height="19.5"/>
+                                                    <rect key="frame" x="0.0" y="30.5" width="319" height="14.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="May 4, 2020 at 3:16PM">
                                                             <attributes>
                                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" size="12" name="Noteworthy-Light"/>
+                                                                <font key="NSFont" size="12" name="HelveticaNeue-Light"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -50,12 +52,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYq-ZY-Xs4">
-                                                    <rect key="frame" x="0.0" y="50" width="382" height="27.5"/>
+                                                    <rect key="frame" x="0.0" y="45" width="319" height="20"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Study English(IELTS) with Speaking, Writing parts and dictation for the Listening part">
                                                             <attributes>
                                                                 <color key="NSColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <font key="NSFont" size="17" name="Noteworthy-Light"/>
+                                                                <font key="NSFont" size="17" name="HelveticaNeue"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -75,7 +77,7 @@
                                     <outlet property="deadlineLabel" destination="Fqr-3X-vdM" id="2yf-2e-kBx"/>
                                     <outlet property="descLabel" destination="GYq-ZY-Xs4" id="dG5-WT-qCp"/>
                                     <outlet property="titleLabel" destination="6OS-EU-YDj" id="fyV-Op-v1l"/>
-                                    <segue destination="u99-1r-M0o" kind="presentation" identifier="DetailTodo" id="fXL-1U-kZQ"/>
+                                    <segue destination="u99-1r-M0o" kind="presentation" identifier="DetailTodo" id="8zR-a1-eW1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -94,12 +96,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="y9u-Q5-jTu" kind="show" identifier="EditTodo" id="yWa-CG-Gqa"/>
+                        <segue destination="y9u-Q5-jTu" kind="show" identifier="EditTodo" id="ndv-N2-iSE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aa9-S6-IdB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-212" y="134"/>
+            <point key="canvasLocation" x="-213" y="134"/>
         </scene>
         <!--Add/Edit Todo-->
         <scene sceneID="J6M-Q2-x2f">
@@ -537,6 +539,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="r6k-1J-YZt"/>
+        <segue reference="ndv-N2-iSE"/>
     </inferredMetricsTieBreakers>
 </document>
