@@ -119,8 +119,14 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
             let srcVC = segue.source as? AddEditTodoTableViewController, let todo = srcVC.todo
             else { return }
         if let selectedIndexPath = srcVC.selectedIndexPath {
-            todos[selectedIndexPath.section][selectedIndexPath.row] = todo
-            tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            if selectedIndexPath.section == todo.priority.rawValue {
+                todos[selectedIndexPath.section][selectedIndexPath.row] = todo
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+                todos[selectedIndexPath.section].remove(at: selectedIndexPath.row)
+                todos[todo.priority.rawValue].append(todo)
+                tableView.reloadData()
+            }
         } else {
             let section = todo.priority.rawValue
             let newIndexPath = IndexPath(row: todos[section].count, section: section)
