@@ -30,7 +30,7 @@
                                                     <attributedString key="attributedText">
                                                         <fragment content="Modern C++">
                                                             <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <font key="NSFont" size="25" name="HelveticaNeue-Bold"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
@@ -42,12 +42,12 @@
                                                     <rect key="frame" x="0.0" y="30.5" width="319" height="14.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgX-pX-cMG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="27" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="28" height="14.5"/>
                                                             <attributedString key="attributedText">
                                                                 <fragment content="LOW">
                                                                     <attributes>
-                                                                        <color key="NSColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <font key="NSFont" metaFont="label" size="12"/>
+                                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                        <font key="NSFont" size="12" name="HelveticaNeue-Bold"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
@@ -55,7 +55,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqr-3X-vdM">
-                                                            <rect key="frame" x="27" y="0.0" width="292" height="14.5"/>
+                                                            <rect key="frame" x="28" y="0.0" width="291" height="14.5"/>
                                                             <attributedString key="attributedText">
                                                                 <fragment content="May 4, 2020 at 3:16PM">
                                                                     <attributes>
