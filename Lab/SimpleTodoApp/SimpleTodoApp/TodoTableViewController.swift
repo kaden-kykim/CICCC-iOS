@@ -19,6 +19,7 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
     private let todoCellId = "TodoCell"
     
     private var todos: [[Todo]] = []
+    private var orderByPriority = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,31 +35,52 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
         tableView.reloadData()
     }
     
+    @IBAction func orderByItemTapped(_ sender: UIBarButtonItem) {
+        if orderByPriority {
+            var tmpTodos: [Todo] = []
+            for todo in todos { tmpTodos.append(contentsOf: todo) }
+            todos.removeAll()
+            todos.append(tmpTodos.sorted { return ($0 as Todo).deadline < ($1 as Todo).deadline })
+        } else {
+            let tmpTodos = todos.remove(at: 0)
+            todos.removeAll()
+            todos.append(tmpTodos.filter{ ($0 as Todo).priority == .high })
+            todos.append(tmpTodos.filter{ ($0 as Todo).priority == .medium })
+            todos.append(tmpTodos.filter{ ($0 as Todo).priority == .low })
+        }
+        orderByPriority = !orderByPriority
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return (orderByPriority) ? 3 : 1
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0: return "High Priority"
-        case 1: return "Medium Priority"
-        case 2: return "Low Priority"
-        default: return ""
+        if orderByPriority {
+            return "\(Priority.init(rawValue: section)!.string()) Priority"
+        } else {
+            return nil
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todos[section].count
+        return todos[orderByPriority ? section : 0].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let todo = todos[indexPath.section][indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: todoCellId, for: indexPath) as! TodoTableViewCell
         cell.update(with: todo)
-        cell.showsReorderControl = true
+        cell.priorityTextLabel.isHidden = orderByPriority
+        cell.showsReorderControl = orderByPriority ? true : false
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return orderByPriority
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -66,6 +88,7 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
             UIContextualAction(style: .destructive, title: "Remove", handler: { [weak self] (action, view, handler) in
                 self?.todos[indexPath.section].remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                self?.setEditing(false, animated: false)
                 handler(true)
             })
         ])
@@ -89,11 +112,9 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        if !isEditing {
-            performSegue(withIdentifier: SegueIdentifier.editTodo, sender: indexPath)
-        }
+        if !isEditing { performSegue(withIdentifier: SegueIdentifier.editTodo, sender: indexPath) }
     }
-
+    
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         var todo = todos[fromIndexPath.section].remove(at: fromIndexPath.row)

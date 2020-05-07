@@ -22,6 +22,14 @@ struct Todo {
 
 enum Priority: Int {
     case high = 0, medium = 1, low = 2
+    
+    func string() -> String {
+        switch self {
+        case .high: return "High"
+        case .medium: return "Medium"
+        case .low: return "Low"
+        }
+    }
 }
 
 var dbTodos: [Todo] = [
