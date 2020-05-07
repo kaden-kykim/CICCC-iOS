@@ -31,7 +31,6 @@ class TodoTableViewCell: UITableViewCell {
             attrTitleString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attrTitleString.length))
             attrTitleString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemGray, range: NSMakeRange(0, attrTitleString.length))
             attrDeadlineString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemGray, range: NSMakeRange(0, attrDeadlineString.length))
-            priorityTextLabel.isHidden = true
         } else {
             attrDeadlineString.addAttribute(NSAttributedString.Key.foregroundColor,
                                             value: Date() < todo.deadline ? UIColor.systemBlue : UIColor.systemRed, range: NSMakeRange(0, attrDeadlineString.length))

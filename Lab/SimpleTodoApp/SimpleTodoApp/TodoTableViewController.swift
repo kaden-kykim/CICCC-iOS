@@ -77,7 +77,7 @@ class TodoTableViewController: UITableViewController, UIViewControllerTransition
         let todo = todos[indexPath.section][indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: todoCellId, for: indexPath) as! TodoTableViewCell
         cell.update(with: todo)
-        cell.priorityTextLabel.isHidden = orderByPriority
+        cell.priorityTextLabel.isHidden = orderByPriority || todo.isCompleted
         cell.showsReorderControl = orderByPriority ? true : false
         return cell
     }
