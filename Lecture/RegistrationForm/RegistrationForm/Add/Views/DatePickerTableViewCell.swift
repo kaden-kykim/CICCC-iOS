@@ -15,6 +15,8 @@ class DatePickerTableViewCell: UITableViewCell {
         dp.translatesAutoresizingMaskIntoConstraints = false
         return dp
     }()
+    
+    var datePickerValueChanged: (() -> ())?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,7 +26,7 @@ class DatePickerTableViewCell: UITableViewCell {
     }
     
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-        
+        datePickerValueChanged?()
     }
     
     required init?(coder: NSCoder) {

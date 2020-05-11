@@ -31,6 +31,22 @@ class AddRegistrationTableViewController: UITableViewController {
         navigationItem.title = "Registrations"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped(_:)))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped(_:)))
+        checkInDatePickerCell.datePickerValueChanged = { [unowned self] in
+            self.updateDateViews()
+        }
+        checkOutDatePickerCell.datePickerValueChanged = { [weak self] in
+            self?.updateDateViews()
+        }
+        updateDateViews()
+    }
+    
+    private func updateDateViews() {
+        checkInDatePickerCell.datePicker.minimumDate = Date()
+        checkOutDatePickerCell.datePicker.minimumDate = checkInDatePickerCell.datePicker.date.addingTimeInterval(86400)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        checkInCell.detailTextLabel?.text = dateFormatter.string(from: checkInDatePickerCell.datePicker.date)
+        checkOutCell.detailTextLabel?.text = dateFormatter.string(from: checkOutDatePickerCell.datePicker.date)
     }
 
     @objc func cancelTapped(_ sender: UIBarButtonItem) {
@@ -118,6 +134,10 @@ class AddRegistrationTableViewController: UITableViewController {
         // These calls tell the table view to re-query its attributes - including cell height
         tableView.beginUpdates()
         tableView.endUpdates()
+    }
+    
+    deinit {
+        print("\(String(describing: type(of: self))) \(#function)")
     }
 
 }
