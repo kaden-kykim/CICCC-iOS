@@ -31,7 +31,6 @@ class RegistrationTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return registrations.count
     }
     
@@ -42,6 +41,7 @@ class RegistrationTableViewController: UITableViewController {
         dateFormatter.dateStyle = .short
         
         cell.textLabel?.text = "\(registration.firstName) \(registration.lastName)"
+        cell.detailTextLabel?.text = "\(dateFormatter.string(from: registration.checkInDate)) - \(dateFormatter.string(from: registration.checkOutDate)): \(registration.roomType.name)"
         return cell
     }
 
