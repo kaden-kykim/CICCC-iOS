@@ -19,6 +19,11 @@ class AddRegistrationTableViewController: UITableViewController {
     private let checkInDatePickerCell = DatePickerTableViewCell()
     private let checkOutDatePickerCell = DatePickerTableViewCell()
     
+    private let adultGuestCell = StepperTableViewCell(guestType: "Adults")
+    private let childGuestCell = StepperTableViewCell(guestType: "Children")
+    
+    private let wifiCell = SwitchTableViewCell(category: "Wi-Fi (per day)", price: Registration.wifiCost)
+    
     private var isCheckInDatePickerShown: Bool = false {
         didSet { checkInDatePickerCell.datePicker.isHidden = !isCheckInDatePickerShown }
     }
@@ -92,6 +97,12 @@ class AddRegistrationTableViewController: UITableViewController {
             return checkOutCell
         case (1, 3):
             return checkOutDatePickerCell
+        case (2, 0):
+            return adultGuestCell
+        case (2, 1):
+            return childGuestCell
+        case (3, 0):
+            return wifiCell
         default:
             return UITableViewCell()
         }

@@ -20,6 +20,8 @@
 		6F0482A42469F5300048FF02 /* RightDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0482A32469F5300048FF02 /* RightDetailTableViewCell.swift */; };
 		6F0482A62469F65A0048FF02 /* DatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0482A52469F65A0048FF02 /* DatePickerTableViewCell.swift */; };
 		6F0482A82469FCD90048FF02 /* UIView+ConstraintLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0482A72469FCD90048FF02 /* UIView+ConstraintLayout.swift */; };
+		6F0482AA246A035E0048FF02 /* StepperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0482A9246A035E0048FF02 /* StepperTableViewCell.swift */; };
+		6F0482AC246A06D40048FF02 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0482AB246A06D40048FF02 /* SwitchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		6F0482A32469F5300048FF02 /* RightDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightDetailTableViewCell.swift; sourceTree = "<group>"; };
 		6F0482A52469F65A0048FF02 /* DatePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		6F0482A72469FCD90048FF02 /* UIView+ConstraintLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintLayout.swift"; sourceTree = "<group>"; };
+		6F0482A9246A035E0048FF02 /* StepperTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperTableViewCell.swift; sourceTree = "<group>"; };
+		6F0482AB246A06D40048FF02 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,8 @@
 				6F0482972469F1F10048FF02 /* TextFieldTableViewCell.swift */,
 				6F0482A32469F5300048FF02 /* RightDetailTableViewCell.swift */,
 				6F0482A52469F65A0048FF02 /* DatePickerTableViewCell.swift */,
+				6F0482A9246A035E0048FF02 /* StepperTableViewCell.swift */,
+				6F0482AB246A06D40048FF02 /* SwitchTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -237,6 +243,8 @@
 				6F0482982469F1F10048FF02 /* TextFieldTableViewCell.swift in Sources */,
 				6F0482812469ED000048FF02 /* AddRegistrationTableViewController.swift in Sources */,
 				6F04828B2469EF190048FF02 /* RegistrationTableViewCell.swift in Sources */,
+				6F0482AA246A035E0048FF02 /* StepperTableViewCell.swift in Sources */,
+				6F0482AC246A06D40048FF02 /* SwitchTableViewCell.swift in Sources */,
 				6F04828C2469EF190048FF02 /* RegistrationTableViewController.swift in Sources */,
 				6F0482A82469FCD90048FF02 /* UIView+ConstraintLayout.swift in Sources */,
 				6F04826C2469EAE50048FF02 /* SceneDelegate.swift in Sources */,
