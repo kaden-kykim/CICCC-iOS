@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddRegistrationTableViewController: UITableViewController {
+class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeTableViewControllerDelegate {
     
     private let firstNameCell = TextFieldTableViewCell(placeholder: "First Name")
     private let lastNameCell = TextFieldTableViewCell(placeholder: "Last name")
@@ -24,16 +24,26 @@ class AddRegistrationTableViewController: UITableViewController {
     
     private let wifiCell = SwitchTableViewCell(category: "Wi-Fi (per day)", price: Registration.wifiCost)
     
+    private let roomTypeCell: RightDetailTableViewCell = {
+        let cell = RightDetailTableViewCell(title: "Room Type")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+    
     private var isCheckInDatePickerShown: Bool = false {
         didSet { checkInDatePickerCell.datePicker.isHidden = !isCheckInDatePickerShown }
     }
     private var isCheckOutDatePickerShown: Bool = false {
         didSet { checkOutDatePickerCell.datePicker.isHidden = !isCheckOutDatePickerShown }
     }
+    
+    private var roomType: RoomType?
 
+    var addRegistration: ((Registration) -> ())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Registrations"
+        navigationItem.title = "New Guest Registration"
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped(_:)))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped(_:)))
         checkInDatePickerCell.datePickerValueChanged = { [unowned self] in
@@ -43,6 +53,20 @@ class AddRegistrationTableViewController: UITableViewController {
             self?.updateDateViews()
         }
         updateDateViews()
+        updateRoomType()
+    }
+    
+    func didSelect(roomType: RoomType) {
+        self.roomType = roomType
+        updateRoomType()
+    }
+    
+    private func updateRoomType() {
+        if let roomType = self.roomType {
+            roomTypeCell.detailTextLabel?.text = roomType.name
+        } else {
+            roomTypeCell.detailTextLabel?.text = "Not Set"
+        }
     }
     
     private func updateDateViews() {
@@ -59,7 +83,23 @@ class AddRegistrationTableViewController: UITableViewController {
     }
     
     @objc func doneTapped(_ sender: UIBarButtonItem) {
+        guard let roomType = roomType else {
+            roomTypeCell.detailTextLabel?.textColor = .red
+            return
+        }
         
+        let firstName = firstNameCell.textStr ?? ""
+        let lastName = lastNameCell.textStr ?? ""
+        let email = emailNameCell.textStr ?? ""
+        let checkInDate = checkInDatePickerCell.datePicker.date
+        let checkOutDate = checkOutDatePickerCell.datePicker.date
+        let adults = adultGuestCell.getNumberOfGuests
+        let children = childGuestCell.getNumberOfGuests
+        let hasWifi = wifiCell.isOn
+        
+        let registration = Registration(firstName: firstName, lastName: lastName, emailAddress: email, checkInDate: checkInDate, checkOutDate: checkOutDate,
+                                        numberOfAdults: adults, numberOfChildren: children, roomType: roomType, wifi: hasWifi)
+        addRegistration?(registration)
     }
     
     // MARK: - Table view data source
@@ -103,6 +143,8 @@ class AddRegistrationTableViewController: UITableViewController {
             return childGuestCell
         case (3, 0):
             return wifiCell
+        case (4, 0):
+            return roomTypeCell
         default:
             return UITableViewCell()
         }
@@ -138,6 +180,11 @@ class AddRegistrationTableViewController: UITableViewController {
             } else {
                 isCheckOutDatePickerShown = true
             }
+        case (4, 0):
+            let selectRoomTVC = SelectRoomTypeTableViewController()
+            selectRoomTVC.delegate = self
+            selectRoomTVC.roomType = roomType
+            navigationController?.pushViewController(selectRoomTVC, animated: true)
         default:
             break
         }
@@ -147,8 +194,6 @@ class AddRegistrationTableViewController: UITableViewController {
         tableView.endUpdates()
     }
     
-    deinit {
-        print("\(String(describing: type(of: self))) \(#function)")
-    }
+//    deinit { print("\(String(describing: type(of: self))) \(#function)" }
 
 }

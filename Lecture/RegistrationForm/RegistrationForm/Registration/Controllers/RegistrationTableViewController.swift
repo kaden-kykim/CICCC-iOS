@@ -24,8 +24,14 @@ class RegistrationTableViewController: UITableViewController {
     
     @objc func addNewRegistrationTVC(_ sender: UIBarButtonItem) {
         let addRegistrationTVC = AddRegistrationTableViewController(style: .grouped) // static table view
+        addRegistrationTVC.addRegistration = addNew
         let embedNav = UINavigationController(rootViewController: addRegistrationTVC)
         present(embedNav, animated: true, completion: nil) // modally (bottom up)
+    }
+    
+    func addNew(registration: Registration) {
+        registrations.append(registration)
+        tableView.insertRows(at: [IndexPath(row: registrations.count - 1, section: 0)], with: .automatic)
     }
 
     // MARK: - Table view data source

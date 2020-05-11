@@ -10,11 +10,15 @@ import UIKit
 
 class TextFieldTableViewCell: UITableViewCell {
 
-    let textField: UITextField = {
+    private let textField: UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
+    
+    var textStr: String? {
+        return textField.text
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
