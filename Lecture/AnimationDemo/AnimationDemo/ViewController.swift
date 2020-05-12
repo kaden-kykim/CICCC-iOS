@@ -14,10 +14,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        //        example1()
-        //        example2()
-        //        example3()
-        example4()
+        // example1()
+        // example2()
+        // example3()
+        // example4()
+        example5()
     }
     
     // change the background color of the square view
@@ -84,6 +85,25 @@ class ViewController: UIViewController {
             square.alpha = 1.0
             square.frame = .init(x: self.view.frame.size.width - 200, y: self.view.frame.size.height - 200, width: 200, height: 200)
         }, completion: nil)
+    }
+    
+    // CGAffineTransform
+    func example5() {
+        let originalFrame = CGRect(x: 0, y: 44, width: 100, height: 100)
+        let square = UIView(frame: originalFrame)
+        square.backgroundColor = .purple
+        view.addSubview(square)
+        
+        UIView.animate(withDuration: 2.0, animations: {
+            let scaleTransform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+            let rotationTransform = CGAffineTransform(rotationAngle: .pi)
+            let translateTransform = CGAffineTransform(translationX: self.view.frame.size.width / 2 - 100, y: self.view.frame.size.height / 2 - 100)
+            square.transform = scaleTransform.concatenating(rotationTransform).concatenating(translateTransform)
+        }) { (_) in
+            UIView.animate(withDuration: 2.0) {
+                square.transform = .identity
+            }
+        }
     }
     
 }
