@@ -24,8 +24,8 @@ class RegistrationTableViewController: UITableViewController {
     
     @objc func addNewRegistrationTVC(_ sender: UIBarButtonItem) {
         let addRegistrationTVC = AddRegistrationTableViewController(style: .grouped) // static table view
-        addRegistrationTVC.addRegistration = addNew
         let embedNav = UINavigationController(rootViewController: addRegistrationTVC)
+        addRegistrationTVC.addRegistration = addNew
         present(embedNav, animated: true, completion: nil) // modally (bottom up)
     }
     
