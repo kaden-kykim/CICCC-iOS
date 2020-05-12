@@ -13,7 +13,7 @@ protocol SelectRoomTypeTableViewControllerDelegate {
 }
 
 class SelectRoomTypeTableViewController: UITableViewController {
-
+    
     private let cellId = "RoomTypeCell"
     
     var delegate: SelectRoomTypeTableViewControllerDelegate?
@@ -25,9 +25,9 @@ class SelectRoomTypeTableViewController: UITableViewController {
         navigationItem.title = "Select Room Type"
         tableView.register(RightDetailTableViewCell.self, forCellReuseIdentifier: cellId)
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return RoomType.all.count
     }
@@ -40,7 +40,7 @@ class SelectRoomTypeTableViewController: UITableViewController {
         cell.accessoryType = roomType == self.roomType ? .checkmark : .none
         return cell
     }
-
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -38,7 +38,7 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     }
     
     private var roomType: RoomType?
-
+    
     var addRegistration: ((Registration) -> ())?
     
     override func viewDidLoad() {
@@ -77,7 +77,7 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         checkInCell.detailTextLabel?.text = dateFormatter.string(from: checkInDatePickerCell.datePicker.date)
         checkOutCell.detailTextLabel?.text = dateFormatter.string(from: checkOutDatePickerCell.datePicker.date)
     }
-
+    
     @objc func cancelTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -103,11 +103,11 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
     }
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -194,6 +194,6 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         tableView.endUpdates()
     }
     
-//    deinit { print("\(String(describing: type(of: self))) \(#function)" }
-
+    //    deinit { print("\(String(describing: type(of: self))) \(#function)" }
+    
 }

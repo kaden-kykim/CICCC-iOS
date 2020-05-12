@@ -17,7 +17,7 @@ class DatePickerTableViewCell: UITableViewCell {
     }()
     
     var datePickerValueChanged: (() -> ())?
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(datePicker)

@@ -9,7 +9,7 @@
 import UIKit
 
 class RegistrationTableViewController: UITableViewController {
-
+    
     private let cellId = "RegistrationCell"
     
     private var registrations = [Registration]()
@@ -33,9 +33,9 @@ class RegistrationTableViewController: UITableViewController {
         registrations.append(registration)
         tableView.insertRows(at: [IndexPath(row: registrations.count - 1, section: 0)], with: .automatic)
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return registrations.count
     }
@@ -50,5 +50,5 @@ class RegistrationTableViewController: UITableViewController {
         cell.detailTextLabel?.text = "\(dateFormatter.string(from: registration.checkInDate)) - \(dateFormatter.string(from: registration.checkOutDate)): \(registration.roomType.name)"
         return cell
     }
-
+    
 }
