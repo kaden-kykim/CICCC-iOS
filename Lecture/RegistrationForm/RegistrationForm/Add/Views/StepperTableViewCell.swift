@@ -47,7 +47,7 @@ class StepperTableViewCell: UITableViewCell {
             guestLabel, numberLabel, stepper
         ], spacing: 15, alignment: .center, distribution: .fill)
         contentView.addSubview(hs)
-        hs.anchors(topAnchor: contentView.topAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, bottomAnchor: contentView.bottomAnchor)
+        hs.anchors(topAnchor: contentView.topAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, bottomAnchor: contentView.bottomAnchor, padding: .init(top: 0, left: 16, bottom: 0, right: 16))
     }
     
     @objc func stepperValueChanged(_ sender: UIStepper) {

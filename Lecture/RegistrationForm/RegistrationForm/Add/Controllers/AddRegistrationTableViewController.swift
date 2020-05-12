@@ -100,6 +100,7 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         let registration = Registration(firstName: firstName, lastName: lastName, emailAddress: email, checkInDate: checkInDate, checkOutDate: checkOutDate,
                                         numberOfAdults: adults, numberOfChildren: children, roomType: roomType, wifi: hasWifi)
         addRegistration?(registration)
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
@@ -165,21 +166,11 @@ class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeT
         tableView.deselectRow(at: indexPath, animated: true)
         switch (indexPath.section, indexPath.row) {
         case (1, 0):
-            if isCheckInDatePickerShown {
-                isCheckInDatePickerShown = false
-            } else if isCheckOutDatePickerShown {
-                isCheckOutDatePickerShown = false
-            } else {
-                isCheckInDatePickerShown = true
-            }
+            isCheckInDatePickerShown = !isCheckInDatePickerShown
+            isCheckOutDatePickerShown = false
         case (1, 2):
-            if isCheckOutDatePickerShown {
-                isCheckOutDatePickerShown = false
-            } else if isCheckInDatePickerShown {
-                isCheckInDatePickerShown = true
-            } else {
-                isCheckOutDatePickerShown = true
-            }
+            isCheckOutDatePickerShown = !isCheckOutDatePickerShown
+            isCheckInDatePickerShown = false
         case (4, 0):
             let selectRoomTVC = SelectRoomTypeTableViewController()
             selectRoomTVC.delegate = self

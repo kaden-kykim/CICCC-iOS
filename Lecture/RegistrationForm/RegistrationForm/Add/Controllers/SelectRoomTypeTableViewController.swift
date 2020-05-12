@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SelectRoomTypeTableViewControllerDelegate {
+protocol SelectRoomTypeTableViewControllerDelegate: class {
     func didSelect(roomType: RoomType)
 }
 
@@ -16,7 +16,7 @@ class SelectRoomTypeTableViewController: UITableViewController {
     
     private let cellId = "RoomTypeCell"
     
-    var delegate: SelectRoomTypeTableViewControllerDelegate?
+    weak var delegate: SelectRoomTypeTableViewControllerDelegate?
     
     var roomType: RoomType?
     
