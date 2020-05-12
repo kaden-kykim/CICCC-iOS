@@ -43,11 +43,11 @@ class StepperTableViewCell: UITableViewCell {
         self.init()
         guestLabel.text = guestType
         numberLabel.text = "0"
-        //        let hs = HorizontalStackView(arrangedSubvies: [
-        //               guestLabel, numberLabel, stepper
-        //        ], spacing: 15, alignment: .center, distribution: .fill)
-        //        contentView.addSubview(hs)
-        //        hs.anchors(topAnchor: contentView.topAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, bottomAnchor: contentView.bottomAnchor)
+        let hs = HorizontalStackView(arrangedSubviews: [
+            guestLabel, numberLabel, stepper
+        ], spacing: 15, alignment: .center, distribution: .fill)
+        contentView.addSubview(hs)
+        hs.anchors(topAnchor: contentView.topAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, bottomAnchor: contentView.bottomAnchor)
     }
     
     @objc func stepperValueChanged(_ sender: UIStepper) {

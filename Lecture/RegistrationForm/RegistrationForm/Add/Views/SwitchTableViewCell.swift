@@ -42,11 +42,11 @@ class SwitchTableViewCell: UITableViewCell {
         self.init()
         categoryLabel.text = category
         priceLabel.text = "$ \(price)"
-        //        let hs = HorizontalStackView(arrangedSubvies: [
-        //               categoryLabel, priceLabel, switchControl
-        //        ], spacing: 15, alignment: .center, distribution: .fill)
-        //        contentView.addSubview(hs)
-        //        hs.anchors(topAnchor: contentView.topAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, bottomAnchor: contentView.bottomAnchor)
+        let hs = HorizontalStackView(arrangedSubviews: [
+            categoryLabel, priceLabel, switchControl
+        ], spacing: 15, alignment: .center, distribution: .fill)
+        contentView.addSubview(hs)
+        hs.anchors(topAnchor: contentView.topAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, bottomAnchor: contentView.bottomAnchor)
     }
     
     required init?(coder: NSCoder) {
