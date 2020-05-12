@@ -11,11 +11,11 @@ import UIKit
 class RightDetailTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: .value1, reuseIdentifier: reuseIdentifier)
     }
     
     convenience init(title: String) {
-        self.init(style: .value1, reuseIdentifier: nil)
+        self.init()
         textLabel?.text = title
     }
     
