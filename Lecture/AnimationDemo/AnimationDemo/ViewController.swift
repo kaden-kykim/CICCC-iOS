@@ -76,10 +76,12 @@ class ViewController: UIViewController {
         let originalFrame = CGRect(x: 0, y: 44, width: 100, height: 100)
         let square = UIView(frame: originalFrame)
         square.backgroundColor = .purple
+        square.alpha = 0
         view.addSubview(square)
         
         UIView.animate(withDuration: 3.0, delay: 2.0, options: [.repeat], animations: {
             square.backgroundColor = .orange
+            square.alpha = 1.0
             square.frame = .init(x: self.view.frame.size.width - 200, y: self.view.frame.size.height - 200, width: 200, height: 200)
         }, completion: nil)
     }
