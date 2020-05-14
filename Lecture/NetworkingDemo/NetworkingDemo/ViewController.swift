@@ -46,10 +46,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchPhotoInfo()
+        fetchPhotoInfo { (photoInfo) in
+            // Main thread (update UI)
+            DispatchQueue.main.async {
+                self.titleLabel.text = photoInfo.title
+            }
+        }
     }
     
-    func fetchPhotoInfo() {
+    func fetchPhotoInfo(completion: @escaping (PhotoInfo) -> Void) {
         // 1. url
         let baseURL = URL(string: "https://api.nasa.gov/planetary/apod")!
         
@@ -64,9 +69,8 @@ class ViewController: UIViewController {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 if let photoInfo = try? JSONDecoder().decode(PhotoInfo.self, from: data) {
-                    DispatchQueue.main.async {
-                        self.titleLabel.text = photoInfo.title
-                    }
+                    // update UI or do somethiing with the data
+                    completion(photoInfo)
                 }
             }
         }
