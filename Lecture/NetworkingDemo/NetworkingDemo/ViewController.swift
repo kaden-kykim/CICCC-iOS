@@ -37,32 +37,12 @@ struct PhotoInfo : Codable {
         self.url = try valueContainer.decode(URL.self, forKey: CodingKeys.url)
         self.copyright = try? valueContainer.decode(String.self, forKey: CodingKeys.copyright)
     }
-    
 }
 
-class ViewController: UIViewController {
-    
-    @IBOutlet var titleLabel: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fetchPhotoInfo { (photoInfo) in
-            // Main thread (update UI)
-            DispatchQueue.main.async {
-                self.titleLabel.text = photoInfo.title
-            }
-        }
-    }
-    
-    func fetchPhotoInfo(completion: @escaping (PhotoInfo) -> Void) {
+struct PhotoInfoAPI {
+    static func fetchPhotoInfo(with queries: [String: String], completion: @escaping (PhotoInfo) -> Void) {
         // 1. url
         let baseURL = URL(string: "https://api.nasa.gov/planetary/apod")!
-        
-        let queries = [
-            "date": "2005-2-22",
-            "api_key": "DEMO_KEY"
-        ]
-        
         let url = baseURL.withQueries(queries)!
         
         // 2. URLSession data task
@@ -77,6 +57,24 @@ class ViewController: UIViewController {
         
         // 3. resume
         task.resume()
+    }
+}
+
+class ViewController: UIViewController {
+    
+    @IBOutlet var titleLabel: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        PhotoInfoAPI.fetchPhotoInfo(with: [
+            "date": "2005-2-22",
+            "api_key": "DEMO_KEY"
+        ]) { (photoInfo) in
+            // Main thread (update UI)
+            DispatchQueue.main.async {
+                self.titleLabel.text = photoInfo.title
+            }
+        }
     }
     
 }
