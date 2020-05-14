@@ -8,6 +8,14 @@
 
 import UIKit
 
+extension URL {
+    func withQueries(_ queries: [String: String]) -> URL? {
+        var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
+        components?.queryItems = queries.map { URLQueryItem(name: $0.0, value: $0.1) }
+        return components?.url
+    }
+}
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -15,7 +23,14 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // 1. url
-        let url = URL(string: "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")!
+        let baseURL = URL(string: "https://api.nasa.gov/planetary/apod")!
+        
+        let queries = [
+            "date": "2005-2-22",
+            "api_key": "DEMO_KEY"
+        ]
+        
+        let url = baseURL.withQueries(queries)!
         
         // 2. URLSession data task
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
