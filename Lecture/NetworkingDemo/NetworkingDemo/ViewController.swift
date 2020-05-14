@@ -19,7 +19,7 @@ extension URL {
 struct PhotoInfo : Codable {
     var title: String
     var description: String
-    var url: String
+    var url: URL
     var copyright: String?
     
     enum CodingKeys: String, CodingKey {
@@ -28,14 +28,28 @@ struct PhotoInfo : Codable {
         case url
         case copyright
     }
+    
+    // Below code, no need to implement from Swift 5.0
+    init(from decoder: Decoder) throws {
+        let valueContainer = try decoder.container(keyedBy: CodingKeys.self)
+        self.title = try valueContainer.decode(String.self, forKey: CodingKeys.title)
+        self.description = try valueContainer.decode(String.self, forKey: CodingKeys.description)
+        self.url = try valueContainer.decode(URL.self, forKey: CodingKeys.url)
+        self.copyright = try? valueContainer.decode(String.self, forKey: CodingKeys.copyright)
+    }
+    
 }
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet var titleLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+        fetchPhotoInfo()
+    }
+    
+    func fetchPhotoInfo() {
         // 1. url
         let baseURL = URL(string: "https://api.nasa.gov/planetary/apod")!
         
@@ -50,8 +64,9 @@ class ViewController: UIViewController {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 if let photoInfo = try? JSONDecoder().decode(PhotoInfo.self, from: data) {
-                    print("Title: \(photoInfo.title)")
-                    print("Desc: \(photoInfo.description)")
+                    DispatchQueue.main.async {
+                        self.titleLabel.text = photoInfo.title
+                    }
                 }
             }
         }
@@ -59,5 +74,5 @@ class ViewController: UIViewController {
         // 3. resume
         task.resume()
     }
-
+    
 }
