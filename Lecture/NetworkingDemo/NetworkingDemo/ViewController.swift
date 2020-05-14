@@ -16,6 +16,20 @@ extension URL {
     }
 }
 
+struct PhotoInfo : Codable {
+    var title: String
+    var description: String
+    var url: String
+    var copyright: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case description = "explanation"
+        case url
+        case copyright
+    }
+}
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -34,8 +48,11 @@ class ViewController: UIViewController {
         
         // 2. URLSession data task
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let data = data, let string = String(data: data, encoding: .utf8) {
-                print(string)
+            if let data = data {
+                if let photoInfo = try? JSONDecoder().decode(PhotoInfo.self, from: data) {
+                    print("Title: \(photoInfo.title)")
+                    print("Desc: \(photoInfo.description)")
+                }
             }
         }
         
