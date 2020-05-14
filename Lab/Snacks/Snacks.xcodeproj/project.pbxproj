@@ -14,6 +14,8 @@
 		6F2BE08C246CAD21002EFC02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F2BE08A246CAD21002EFC02 /* LaunchScreen.storyboard */; };
 		6FFFA495246CB1ED0087E7EF /* UIView+ConstraintLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFA494246CB1ED0087E7EF /* UIView+ConstraintLayout.swift */; };
 		6FFFA497246CB8640087E7EF /* UIDevice+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFA496246CB8640087E7EF /* UIDevice+Model.swift */; };
+		6FFFA4BA246DEE7E0087E7EF /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFA4B8246DEE7E0087E7EF /* VerticalStackView.swift */; };
+		6FFFA4BB246DEE7E0087E7EF /* HorizontalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFA4B9246DEE7E0087E7EF /* HorizontalStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		6F2BE08D246CAD21002EFC02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FFFA494246CB1ED0087E7EF /* UIView+ConstraintLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintLayout.swift"; sourceTree = "<group>"; };
 		6FFFA496246CB8640087E7EF /* UIDevice+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Model.swift"; sourceTree = "<group>"; };
+		6FFFA4B8246DEE7E0087E7EF /* VerticalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
+		6FFFA4B9246DEE7E0087E7EF /* HorizontalStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 		6FFFA492246CB1B90087E7EF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				6FFFA4B9246DEE7E0087E7EF /* HorizontalStackView.swift */,
+				6FFFA4B8246DEE7E0087E7EF /* VerticalStackView.swift */,
 				6FFFA494246CB1ED0087E7EF /* UIView+ConstraintLayout.swift */,
 				6FFFA496246CB8640087E7EF /* UIDevice+Model.swift */,
 			);
@@ -157,8 +163,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F2BE084246CAD1D002EFC02 /* ViewController.swift in Sources */,
+				6FFFA4BA246DEE7E0087E7EF /* VerticalStackView.swift in Sources */,
 				6F2BE080246CAD1D002EFC02 /* AppDelegate.swift in Sources */,
 				6F2BE082246CAD1D002EFC02 /* SceneDelegate.swift in Sources */,
+				6FFFA4BB246DEE7E0087E7EF /* HorizontalStackView.swift in Sources */,
 				6FFFA497246CB8640087E7EF /* UIDevice+Model.swift in Sources */,
 				6FFFA495246CB1ED0087E7EF /* UIView+ConstraintLayout.swift in Sources */,
 			);

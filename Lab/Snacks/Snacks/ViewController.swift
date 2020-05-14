@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         plusIconBarItem.trailingAnchor.constraint(equalTo: navBar.trailingAnchor, constant: -5).isActive = true
     }
     
-    let rotation45DTransform = CGAffineTransform(rotationAngle: .pi / 4)
+    private let rotation45DTransform = CGAffineTransform(rotationAngle: .pi / 4)
     @objc func plusItemTapped(_ sender: UIButton) {
         if navBar.frame.size.height < NAV_BAR_EXT_HEIGHT {
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.35, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
