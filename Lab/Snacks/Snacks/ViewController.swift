@@ -10,11 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private static let NAV_BAR_HEIGHT: CGFloat = 44
+    private static let STAT_BAR_HEIGHT: CGFloat = 20
+    
     private let navBar: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .init(red: CGFloat(0xDD / 255.0), green: CGFloat(0xDD / 255.0), blue: CGFloat(0xDD / 255.0), alpha: 1)
-        view.heightAnchor.constraint(equalToConstant: UIDevice.current.hasNotch ? 88 : 64).isActive = true
+        view.heightAnchor.constraint(equalToConstant: UIDevice.current.hasNotch ? NAV_BAR_HEIGHT * 2 : NAV_BAR_HEIGHT + STAT_BAR_HEIGHT).isActive = true
         return view
     }()
     
@@ -23,9 +26,9 @@ class ViewController: UIViewController {
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("＋", for: .normal)
         btn.setTitleColor(.systemBlue, for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 40)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: NAV_BAR_HEIGHT)
         btn.addTarget(self, action: #selector(plusItemTapped(_:)), for: .touchUpInside)
-        btn.constraintWidth(equalToConstant: 44, heightEqualToConstant: 44)
+        btn.constraintWidth(equalToConstant: NAV_BAR_HEIGHT, heightEqualToConstant: NAV_BAR_HEIGHT)
         return btn
     }()
     
