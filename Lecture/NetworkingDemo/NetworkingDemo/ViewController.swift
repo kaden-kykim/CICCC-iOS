@@ -13,9 +13,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .red
+        
+        // 1. url
+        let url = URL(string: "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY")!
+        
+        // 2. URLSession data task
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let data = data, let string = String(data: data, encoding: .utf8) {
+                print(string)
+            }
+        }
+        
+        // 3. resume
+        task.resume()
     }
 
-
 }
-
