@@ -54,13 +54,23 @@ class StoreItemListTableViewController: UITableViewController {
         let item = items[indexPath.row]
         // set label to the item's name
         cell.textLabel?.text = item.name
-
-        // set detail label to the item's subtitle
+        // set detail label to the item's artist
+        cell.detailTextLabel?.text = item.artist
         // reset the image view to the gray image
+        cell.imageView?.image = UIImage(named: "gray")
         
         // initialize a network task to fetch the item's artwork
-        // if successful, use the main queue capture the cell, to initialize a UIImage, and set the cell's image view's image to the 
+        let task = URLSession.shared.dataTask(with: item.artworkURL) { (data, response, error) in
+            if let data = data, let artwork = UIImage(data: data) {
+                // if successful, use the main queue capture the cell, to initialize a UIImage, and set the cell's image view's image to the
+                DispatchQueue.main.async {
+                    cell.imageView?.image = artwork
+                }
+            }
+        }
+         
         // resume the task
+        task.resume()
     }
     
     @IBAction func filterOptionUpdated(_ sender: UISegmentedControl) {
@@ -68,15 +78,15 @@ class StoreItemListTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
         configure(cell: cell, forItemAt: indexPath)
-
+        
         return cell
     }
     
@@ -88,9 +98,8 @@ class StoreItemListTableViewController: UITableViewController {
 }
 
 extension StoreItemListTableViewController: UISearchBarDelegate {
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         fetchMatchingItems()
         searchBar.resignFirstResponder()
     }
