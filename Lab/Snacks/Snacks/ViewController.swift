@@ -10,15 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private static let STAT_BAR_HEIGHT: CGFloat = 20
-    private static let NAV_BAR_HEIGHT: CGFloat = 44
-    private static let NAV_BAR_EXT_HEIGHT: CGFloat = 200
+    private let STAT_BAR_HEIGHT: CGFloat = 20
+    private let NAV_BAR_HEIGHT: CGFloat = 44
+    private let NAV_BAR_EXT_HEIGHT: CGFloat = 200
     
     private let hasNotch = UIDevice.current.hasNotch
-    
-    private var navHeight: CGFloat = 0
+    private lazy var navHeight: CGFloat = hasNotch ? NAV_BAR_HEIGHT * 2 : NAV_BAR_HEIGHT + STAT_BAR_HEIGHT
     private var navNormalHeightConstraint: NSLayoutConstraint!
     private var navExtHeightConstraint: NSLayoutConstraint!
+    private var navTitleNormalPosition: NSLayoutConstraint!
+    private var navTitleExtPosition: NSLayoutConstraint!
     
     private let navBar: UIView = {
         let view = UIView()
@@ -27,13 +28,19 @@ class ViewController: UIViewController {
         return view
     }()
     
-    private let plusIconBarItem: UIButton = {
+    private lazy var navBarTitle: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "SNACKS"
+        return label
+    }()
+    
+    private lazy var plusIconBarItem: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("＋", for: .normal)
         btn.setTitleColor(.systemBlue, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: NAV_BAR_HEIGHT)
-        btn.constraintWidth(equalToConstant: NAV_BAR_HEIGHT, heightEqualToConstant: NAV_BAR_HEIGHT)
         btn.addTarget(self, action: #selector(plusItemTapped(_:)), for: .touchUpInside)
         return btn
     }()
@@ -68,10 +75,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navHeight = hasNotch ? ViewController.NAV_BAR_HEIGHT * 2 : ViewController.NAV_BAR_HEIGHT + ViewController.STAT_BAR_HEIGHT
         
         navNormalHeightConstraint = navBar.heightAnchor.constraint(equalToConstant: navHeight)
-        navExtHeightConstraint = navBar.heightAnchor.constraint(equalToConstant: ViewController.NAV_BAR_EXT_HEIGHT)
+        navExtHeightConstraint = navBar.heightAnchor.constraint(equalToConstant: NAV_BAR_EXT_HEIGHT)
+        navTitleNormalPosition = navBarTitle.centerYAnchor.constraint(equalTo: navBar.centerYAnchor, constant: hasNotch ? 20 : 10)
+        navTitleExtPosition = navBarTitle.centerYAnchor.constraint(equalTo: navBar.centerYAnchor, constant: hasNotch ? -30 : -60)
         
         view.addSubview(navBar)
         navBar.constraintWidth(equalToConstant: view.frame.size.width)
@@ -80,12 +88,17 @@ class ViewController: UIViewController {
         navBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         
         navBar.addSubview(plusIconBarItem)
-        plusIconBarItem.topAnchor.constraint(equalTo: navBar.topAnchor, constant: hasNotch ? ViewController.NAV_BAR_HEIGHT : ViewController.STAT_BAR_HEIGHT).isActive = true
+        plusIconBarItem.topAnchor.constraint(equalTo: navBar.topAnchor, constant: hasNotch ? NAV_BAR_HEIGHT : STAT_BAR_HEIGHT).isActive = true
         plusIconBarItem.trailingAnchor.constraint(equalTo: navBar.trailingAnchor, constant: -5).isActive = true
+        plusIconBarItem.constraintWidth(equalToConstant: NAV_BAR_HEIGHT, heightEqualToConstant: NAV_BAR_HEIGHT)
+        
+        navBar.addSubview(navBarTitle)
+        navBarTitle.centerXAnchor.constraint(equalTo: navBar.centerXAnchor).isActive = true
+        navTitleNormalPosition.isActive = true
         
         navBar.addSubview(snackImages)
         snackImages.widthAnchor.constraint(equalTo: navBar.widthAnchor, constant: -10).isActive = true
-        snackImages.heightAnchor.constraint(equalToConstant: ViewController.NAV_BAR_EXT_HEIGHT - navHeight).isActive = true
+        snackImages.heightAnchor.constraint(equalToConstant: NAV_BAR_EXT_HEIGHT - navHeight - 5).isActive = true
         snackImages.leadingAnchor.constraint(equalTo: navBar.leadingAnchor, constant: 5).isActive = true
         snackImages.bottomAnchor.constraint(equalTo: navBar.bottomAnchor, constant: -5).isActive = true
         
@@ -94,28 +107,33 @@ class ViewController: UIViewController {
         snackListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         snackListTableView.topAnchor.constraint(equalTo: navBar.bottomAnchor).isActive = true
         snackListTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
         snackListTableView.dataSource = self
         snackListTableView.register(UITableViewCell.self, forCellReuseIdentifier: snackCellId)
     }
     
     private let rotation45DTransform = CGAffineTransform(rotationAngle: .pi / 4)
     @objc private func plusItemTapped(_ sender: UIButton) {
-        if navBar.frame.size.height < ViewController.NAV_BAR_EXT_HEIGHT {
+        if navBar.frame.size.height < NAV_BAR_EXT_HEIGHT {
             self.snackImages.isHidden = false
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.35, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
                 self.navNormalHeightConstraint.isActive = false
                 self.navExtHeightConstraint.isActive = true
+                self.navTitleNormalPosition.isActive = false
+                self.navTitleExtPosition.isActive = true
                 self.view.layoutIfNeeded()
                 self.plusIconBarItem.transform = self.rotation45DTransform
+                self.navBarTitle.text = "Add a SNACK"
             })
         } else {
             self.snackImages.isHidden = true
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.35, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
                 self.navExtHeightConstraint.isActive = false
                 self.navNormalHeightConstraint.isActive = true
+                self.navTitleExtPosition.isActive = false
+                self.navTitleNormalPosition.isActive = true
                 self.view.layoutIfNeeded()
                 self.plusIconBarItem.transform = .identity
+                self.navBarTitle.text = "SNACKS"
             })
         }
     }
