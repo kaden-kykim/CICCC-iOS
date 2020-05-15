@@ -15,10 +15,6 @@ extension URL {
 
 struct StoreItems: Codable {
     let results: [StoreItem]
-    
-    enum CodingKeys: String, CodingKey {
-        case results
-    }
 }
 
 struct StoreItem: Codable {
