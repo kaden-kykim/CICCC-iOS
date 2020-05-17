@@ -93,7 +93,7 @@
 		6F7C12A72470B1F900CA1F3E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6F7C12B92470C33C00CA1F3E /* NetworkController */,
+				6F7C12BA2470C35E00CA1F3E /* MenuController.swift */,
 				6F7C12B82470C32C00CA1F3E /* ViewController */,
 			);
 			path = Controllers;
@@ -126,14 +126,6 @@
 				6F7C12AA2470B93800CA1F3E /* CategoryTableViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		6F7C12B92470C33C00CA1F3E /* NetworkController */ = {
-			isa = PBXGroup;
-			children = (
-				6F7C12BA2470C35E00CA1F3E /* MenuController.swift */,
-			);
-			path = NetworkController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
