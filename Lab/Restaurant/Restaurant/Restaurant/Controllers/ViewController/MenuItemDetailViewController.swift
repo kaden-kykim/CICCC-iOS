@@ -34,6 +34,7 @@ class MenuItemDetailViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.addToOrderButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.addToOrderButton.transform = .identity
+            MenuController.shared.order.menuItems.append(self.menuItem)
         }
     }
     

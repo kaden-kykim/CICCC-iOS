@@ -45,7 +45,7 @@ class MenuTableViewController: UITableViewController {
     private func configure(_ cell: UITableViewCell, forItemAt indexPath: IndexPath) {
         let menuItem = menuItems[indexPath.row]
         cell.textLabel?.text = menuItem.name
-        cell.detailTextLabel?.text = String(format: "$%.2f", menuItem.price)
+        cell.detailTextLabel?.text = String(format: "$ %.2f", menuItem.price)
     }
     
     // MARK: - Navigation
