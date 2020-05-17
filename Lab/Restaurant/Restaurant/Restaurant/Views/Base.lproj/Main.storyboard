@@ -103,14 +103,75 @@
                     <view key="view" contentMode="scaleToFill" id="Zde-zn-OVt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="97b-6k-cHG">
+                                <rect key="frame" x="20" y="96" width="374" height="224"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1eK-Mn-z4I">
+                                <rect key="frame" x="20" y="328" width="286" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 27.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pON-sR-xxZ">
+                                <rect key="frame" x="314" y="328" width="80" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="HGZ-rQ-sHj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUQ-wZ-Y2a">
+                                <rect key="frame" x="20" y="360" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2K-Ik-SnY">
+                                <rect key="frame" x="20" y="772" width="374" height="33"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Add To Order">
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="orderButtonTapped:" destination="d7i-Ge-u2H" eventType="touchUpInside" id="fpf-Y7-Oy0"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="MhD-Mf-G5v" firstAttribute="trailing" secondItem="cUQ-wZ-Y2a" secondAttribute="trailing" constant="20" id="4QI-Nm-sP3"/>
+                            <constraint firstItem="97b-6k-cHG" firstAttribute="leading" secondItem="MhD-Mf-G5v" secondAttribute="leading" constant="20" id="5zh-zv-ysd"/>
+                            <constraint firstItem="97b-6k-cHG" firstAttribute="height" secondItem="Zde-zn-OVt" secondAttribute="height" multiplier="0.25" id="749-7f-IK7"/>
+                            <constraint firstItem="cUQ-wZ-Y2a" firstAttribute="leading" secondItem="MhD-Mf-G5v" secondAttribute="leading" constant="20" id="Gof-YG-Fo4"/>
+                            <constraint firstItem="97b-6k-cHG" firstAttribute="top" secondItem="MhD-Mf-G5v" secondAttribute="top" constant="8" id="Htj-dX-PhL"/>
+                            <constraint firstItem="cUQ-wZ-Y2a" firstAttribute="top" secondItem="1eK-Mn-z4I" secondAttribute="bottom" constant="8" id="Lex-6f-DDa"/>
+                            <constraint firstItem="Y2K-Ik-SnY" firstAttribute="bottom" secondItem="MhD-Mf-G5v" secondAttribute="bottom" constant="-8" id="MXR-T6-Ytt"/>
+                            <constraint firstItem="Y2K-Ik-SnY" firstAttribute="leading" secondItem="MhD-Mf-G5v" secondAttribute="leading" constant="20" id="muq-XN-xr4"/>
+                            <constraint firstItem="1eK-Mn-z4I" firstAttribute="leading" secondItem="MhD-Mf-G5v" secondAttribute="leading" constant="20" id="oPW-XH-tIe"/>
+                            <constraint firstItem="1eK-Mn-z4I" firstAttribute="top" secondItem="97b-6k-cHG" secondAttribute="bottom" constant="8" id="oTp-N7-dk9"/>
+                            <constraint firstItem="MhD-Mf-G5v" firstAttribute="trailing" secondItem="97b-6k-cHG" secondAttribute="trailing" constant="20" id="pOb-Fn-fwm"/>
+                            <constraint firstItem="pON-sR-xxZ" firstAttribute="leading" secondItem="1eK-Mn-z4I" secondAttribute="trailing" constant="8" id="tfN-Qv-gpr"/>
+                            <constraint firstItem="MhD-Mf-G5v" firstAttribute="trailing" secondItem="pON-sR-xxZ" secondAttribute="trailing" constant="20" id="vDS-Ib-Tcr"/>
+                            <constraint firstItem="pON-sR-xxZ" firstAttribute="top" secondItem="97b-6k-cHG" secondAttribute="bottom" constant="8" id="woo-uR-L2i"/>
+                            <constraint firstItem="MhD-Mf-G5v" firstAttribute="trailing" secondItem="Y2K-Ik-SnY" secondAttribute="trailing" constant="20" id="xlJ-VM-TtK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="MhD-Mf-G5v"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="hfd-uj-lW4"/>
+                    <connections>
+                        <outlet property="addToOrderButton" destination="Y2K-Ik-SnY" id="7z0-qz-abM"/>
+                        <outlet property="detailTextLabel" destination="cUQ-wZ-Y2a" id="bw7-bI-Rrv"/>
+                        <outlet property="imageView" destination="97b-6k-cHG" id="zlO-2e-M6u"/>
+                        <outlet property="priceLabel" destination="pON-sR-xxZ" id="Gsa-ir-ggf"/>
+                        <outlet property="titleLabel" destination="1eK-Mn-z4I" id="DY6-ck-lw7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ExC-of-Eft" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2590" y="-217"/>
+            <point key="canvasLocation" x="2589.8550724637685" y="-217.63392857142856"/>
         </scene>
         <!--Your Order-->
         <scene sceneID="8VH-gt-2gg">
@@ -196,6 +257,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1" width="1200" height="600"/>
         <image name="book" catalog="system" width="128" height="101"/>
         <image name="book.fill" catalog="system" width="128" height="100"/>
         <image name="cart" catalog="system" width="128" height="102"/>
