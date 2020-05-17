@@ -28,6 +28,10 @@ class MenuItemDetailViewController: UIViewController {
         titleLabel.text = menuItem.name
         priceLabel.text = String(format: "$ %.2f", menuItem.price)
         detailTextLabel.text = menuItem.detailText
+        MenuController.shared.fetchImage(url: menuItem.imageURL) {
+            guard let image = $0 else { return }
+            DispatchQueue.main.async { self.imageView.image = image }
+        }
     }
     
     @IBAction func orderButtonTapped(_ sender: UIButton) {

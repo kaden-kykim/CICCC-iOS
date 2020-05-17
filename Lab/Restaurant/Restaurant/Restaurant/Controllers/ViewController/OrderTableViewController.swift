@@ -64,6 +64,18 @@ class OrderTableViewController: UITableViewController {
         let menuItem = MenuController.shared.order.menuItems[indexPath.row]
         cell.textLabel?.text = menuItem.name
         cell.detailTextLabel?.text = String(format: "$ %.2f", menuItem.price)
+        MenuController.shared.fetchImage(url: menuItem.imageURL) {
+            guard let image = $0 else { return }
+            DispatchQueue.main.async {
+                if let currentIndexPath = self.tableView.indexPath(for: cell), currentIndexPath != indexPath { return }
+                cell.imageView?.image = image.resized(toWidth: cell.bounds.size.height)
+                cell.setNeedsLayout()
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
     }
     
     // Override to support conditional editing of the table view.
