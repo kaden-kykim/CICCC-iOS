@@ -10,7 +10,7 @@
         <!--Menu-->
         <scene sceneID="1HK-Pl-aUv">
             <objects>
-                <tableViewController id="ugr-cZ-kbD" customClass="CategoryTableViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CategoryTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ugr-cZ-kbD" customClass="CategoryTableViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RLi-LM-feH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,7 +51,7 @@
         <!--Entrees-->
         <scene sceneID="v5R-Lg-VZj">
             <objects>
-                <tableViewController id="3Ds-YF-8ty" customClass="MenuTableViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MenuTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3Ds-YF-8ty" customClass="MenuTableViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="t5p-yO-D5x">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,7 +103,7 @@
         <!--Menu Item Detail View Controller-->
         <scene sceneID="QcW-CL-kUW">
             <objects>
-                <viewController id="d7i-Ge-u2H" customClass="MenuItemDetailViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuItemDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d7i-Ge-u2H" customClass="MenuItemDetailViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zde-zn-OVt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,7 +180,7 @@
         <!--Your Order-->
         <scene sceneID="8VH-gt-2gg">
             <objects>
-                <tableViewController id="iya-Nj-NNL" customClass="OrderTableViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="OrderTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iya-Nj-NNL" customClass="OrderTableViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hwd-0o-k9S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -284,7 +284,7 @@
         <!--Your Order-->
         <scene sceneID="qZA-tx-IgM">
             <objects>
-                <navigationController id="R5h-ft-9ZT" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Order Nav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="R5h-ft-9ZT" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Your Order" image="cart" catalog="system" selectedImage="cart.fill" id="YCx-qF-kYQ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="BEy-W5-6C9">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -301,7 +301,7 @@
         <!--Menu-->
         <scene sceneID="1e0-MA-eEy">
             <objects>
-                <navigationController id="YDe-XD-2aH" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Menu Nav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YDe-XD-2aH" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Menu" image="book" catalog="system" selectedImage="book.fill" id="zGa-Qb-99N"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="eFs-Z6-xtr">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -318,7 +318,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="v1n-1B-iVM">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="EQW-eG-uXj" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Root" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EQW-eG-uXj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nFg-Vy-X19">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
