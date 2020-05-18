@@ -87,7 +87,6 @@ class MenuController {
         guard let data = try? Data(contentsOf: orderFileURL) else { return }
         if !isOrderLoaded {
             order = (try? JSONDecoder().decode(Order.self, from: data)) ?? Order(menuItems: [])
-            print("Order Loaded")
             isOrderLoaded = true
         }
     }
@@ -97,7 +96,6 @@ class MenuController {
         let orderFileURL = documentsDirectoryURL.appendingPathComponent("order").appendingPathExtension("json")
         if let data = try? JSONEncoder().encode(order), isOrderLoaded {
             try? data.write(to: orderFileURL)
-            print("Order Saved")
             isOrderLoaded = false
         }
     }
