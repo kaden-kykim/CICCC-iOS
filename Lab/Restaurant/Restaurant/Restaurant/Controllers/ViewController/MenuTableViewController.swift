@@ -10,24 +10,35 @@ import UIKit
 
 class MenuTableViewController: UITableViewController {
     
-    var category: String!
+    var category: String?
     
+    private let categoryId = "category"
     private let cellId = "MenuCellIdentifier"
     private var menuItems = [MenuItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = category.capitalized
-        MenuController.shared.fetchMenuItems(forCategory: category) {
-            if let menuItems = $0 {
-                self.menuItems = menuItems
-                self.updateUI(with: menuItems)
-            }
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: MenuController.menuDataUpdatedNotification, object: nil)
+        updateUI()
     }
     
-    private func updateUI(with menuItems: [MenuItem]) {
-        DispatchQueue.main.async { self.tableView.reloadData() }
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+        guard let category = category else { return }
+        coder.encode(category, forKey: categoryId)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
+        category = coder.decodeObject(forKey: categoryId) as? String
+        updateUI()
+    }
+    
+    @objc private func updateUI() {
+        guard let category = category else { return }
+        title = category.capitalized
+        menuItems = MenuController.shared.items(forCategory: category) ?? []
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -50,6 +61,7 @@ class MenuTableViewController: UITableViewController {
             guard let image = $0 else { return }
             DispatchQueue.main.async {
                 if let currentIndexPath = self.tableView.indexPath(for: cell), currentIndexPath != indexPath { return }
+                /// TODO: Below, resizing an image could be burden if there are too many entries
                 cell.imageView?.image = image.resized(toWidth: cell.bounds.size.height)
                 cell.setNeedsLayout()
             }

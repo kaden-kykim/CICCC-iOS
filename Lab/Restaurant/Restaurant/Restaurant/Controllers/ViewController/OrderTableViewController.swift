@@ -68,6 +68,7 @@ class OrderTableViewController: UITableViewController {
             guard let image = $0 else { return }
             DispatchQueue.main.async {
                 if let currentIndexPath = self.tableView.indexPath(for: cell), currentIndexPath != indexPath { return }
+                /// TODO: Below, resizing an image could be burden if there are too many entries
                 cell.imageView?.image = image.resized(toWidth: cell.bounds.size.height)
                 cell.setNeedsLayout()
             }

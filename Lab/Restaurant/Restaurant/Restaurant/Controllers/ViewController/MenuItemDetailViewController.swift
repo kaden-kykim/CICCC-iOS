@@ -15,7 +15,9 @@ class MenuItemDetailViewController: UIViewController {
     @IBOutlet var detailTextLabel: UILabel!
     @IBOutlet var addToOrderButton: UIButton!
     
-    var menuItem: MenuItem!
+    var menuItem: MenuItem?
+    
+    private let menuItemId = "menuItemId"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,21 @@ class MenuItemDetailViewController: UIViewController {
         updateUI()
     }
     
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+        guard let menuItem = menuItem else { return }
+        coder.encode(menuItem.id, forKey: menuItemId)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
+        let menuItemID = Int(coder.decodeInt32(forKey: menuItemId))
+        menuItem = MenuController.shared.item(withID: menuItemID)!
+        updateUI()
+    }
+    
     private func updateUI() {
+        guard let menuItem = menuItem else { return }
         titleLabel.text = menuItem.name
         priceLabel.text = String(format: "$ %.2f", menuItem.price)
         detailTextLabel.text = menuItem.detailText
@@ -35,11 +51,12 @@ class MenuItemDetailViewController: UIViewController {
     }
     
     @IBAction func orderButtonTapped(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.3) {
+        guard let menuItem = menuItem else { return }
+        UIView.animate(withDuration: 0.2) {
             self.addToOrderButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             self.addToOrderButton.transform = .identity
-            MenuController.shared.order.menuItems.append(self.menuItem)
         }
+        MenuController.shared.order.menuItems.append(menuItem)
     }
     
 }

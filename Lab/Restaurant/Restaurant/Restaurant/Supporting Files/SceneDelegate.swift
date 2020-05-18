@@ -20,6 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(updateOrderBadge), name: MenuController.orderUpdateNotification, object: nil)
         orderTabBarItem = (self.window?.rootViewController as? UITabBarController)?.viewControllers?[1].tabBarItem
         MenuController.shared.loadOrder()
+        MenuController.shared.loadItems()
+        MenuController.shared.loadRemoteData()
+        updateOrderBadge()
         
         guard let _ = (scene as? UIWindowScene) else { return }
     }
@@ -33,12 +36,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
+    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+        return scene.userActivity
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
         MenuController.shared.saveOrder()
+        MenuController.shared.saveItems()
     }
     
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -49,12 +57,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        if let tabBarController = window!.rootViewController as? UITabBarController {
+            if let menuTableViewController = tabBarController.viewControllers?.last as? MenuTableViewController {
+                scene.userActivity = menuTableViewController.userActivity
+            }
+            if let menuItemDetailViewController = tabBarController.viewControllers?.last as? MenuItemDetailViewController {
+                scene.userActivity = menuItemDetailViewController.userActivity
+            }
+        }
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         MenuController.shared.loadOrder()
+        MenuController.shared.loadItems()
+        MenuController.shared.loadRemoteData()
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -62,6 +80,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
         MenuController.shared.saveOrder()
+        MenuController.shared.saveItems()
     }
     
 }

@@ -15,16 +15,13 @@ class CategoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        MenuController.shared.fetchCategories {
-            if let categories = $0 {
-                self.categories = categories
-                self.updateUI(with: categories)
-            }
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: MenuController.menuDataUpdatedNotification, object: nil)
+        updateUI()
     }
     
-    private func updateUI(with categories: [String]) {
-        DispatchQueue.main.async { self.tableView.reloadData() }
+    @objc private func updateUI() {
+        categories = MenuController.shared.categories
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
