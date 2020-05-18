@@ -14,6 +14,8 @@ class MenuController {
     static let orderUpdateNotification = Notification.Name("MenuController.orderUpdated")
     static let shared = MenuController()
     
+    var isOrderLoaded = false
+    
     var order = Order() {
         didSet {
             NotificationCenter.default.post(name: MenuController.orderUpdateNotification, object: nil)
@@ -78,4 +80,26 @@ class MenuController {
         }
         task.resume()
     }
+    
+    func loadOrder() {
+        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let orderFileURL = documentsDirectoryURL.appendingPathComponent("order").appendingPathExtension("json")
+        guard let data = try? Data(contentsOf: orderFileURL) else { return }
+        if !isOrderLoaded {
+            order = (try? JSONDecoder().decode(Order.self, from: data)) ?? Order(menuItems: [])
+            print("Order Loaded")
+            isOrderLoaded = true
+        }
+    }
+    
+    func saveOrder() {
+        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let orderFileURL = documentsDirectoryURL.appendingPathComponent("order").appendingPathExtension("json")
+        if let data = try? JSONEncoder().encode(order), isOrderLoaded {
+            try? data.write(to: orderFileURL)
+            print("Order Saved")
+            isOrderLoaded = false
+        }
+    }
+    
 }
