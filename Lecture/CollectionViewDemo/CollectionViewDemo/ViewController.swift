@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         collectionView.register(PersonCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -38,8 +39,12 @@ class ViewController: UIViewController {
 // MARK: - CollectionView data source
 extension ViewController : UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 10
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 200
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -49,7 +54,9 @@ extension ViewController : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        let view = collectionView.dequeueReusableSupplementaryView(ofKind: , withReuseIdentifier: <#T##String#>, for: <#T##IndexPath#>)
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! HeaderView
+        headerView.textLabel.text = "Microsoft! - \(indexPath.section)"
+        return headerView
     }
     
 }
@@ -62,6 +69,10 @@ extension ViewController : UICollectionViewDelegateFlowLayout {
         // Similar to TableView
 //        let size = collectionView.frame.width - 2 * padding
         return CGSize(width: size, height: size)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 50)
     }
     
 }
