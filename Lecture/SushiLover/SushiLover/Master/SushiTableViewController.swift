@@ -65,19 +65,19 @@ class SushiTableViewController: UIViewController {
         searchController.searchResultsUpdater = self
         // set background deemable
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search Sushi"
-        // ensure that the search bar doesn't remain on the screen if the user navigates to another view controller
-        // while the UISearchController is active
+        // ensure that the search bar doesn't remain on the screen if the user navigates to another view controller while the UISearchController is active
         definesPresentationContext = true
         
         searchController.searchBar.scopeButtonTitles = Sushi.Category.allCases.map { $0.rawValue }
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(forName: UIResponder.keyboardDidShowNotification, object: nil, queue: .main) {
-            self.handlerKeyboard(notification: $0)
+            self.handleKeyboard(notification: $0)
         }
         notificationCenter.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) {
-            self.handlerKeyboard(notification: $0)
+            self.handleKeyboard(notification: $0)
         }
     }
     
@@ -103,8 +103,17 @@ class SushiTableViewController: UIViewController {
         tableView.reloadData()
     }
     
-    private func handlerKeyboard(notification: Notification) {
-        
+    private func handleKeyboard(notification: Notification) {
+        guard notification.name == UIResponder.keyboardDidShowNotification else {
+            searchFooterBottomConstraint.constant = 0
+            view.layoutIfNeeded()
+            return
+        }
+        guard let info = notification.userInfo,
+            let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+            else { return }
+        searchFooterBottomConstraint.constant = -keyboardFrame.cgRectValue.size.height
+        UIView.animate(withDuration: 0.1) { self.view.layoutIfNeeded() }
     }
     
 }
