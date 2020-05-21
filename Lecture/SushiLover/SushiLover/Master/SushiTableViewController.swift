@@ -11,6 +11,17 @@ import UIKit
 class SushiTableViewController: UITableViewController {
     private let cellId = "SushiCell"
     private var sushis: [Sushi] = Sushi.sushis()
+    private var filteredSushis: [Sushi] = []
+    
+    private let searchController = UISearchController(searchResultsController: nil)
+    
+    private var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    private var isFiltering: Bool {
+        return searchController.isActive && !isSearchBarEmpty
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,17 +33,41 @@ class SushiTableViewController: UITableViewController {
         
         /// Table view
         tableView.register(SubtitleCell.self, forCellReuseIdentifier: cellId)
+        
+        /// Search Controller
+        setupSearchController()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    private func setupSearchController() {
+        navigationItem.searchController = searchController
+        searchController.searchResultsUpdater = self
+        // set background deemable
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Sushi"
+        // ensure that the search bar doesn't remain on the screen if the user navigates to another view controller
+        // while the UISearchController is active
+        definesPresentationContext = true
+    }
+    
+    private func filterSushiFor(searchText: String, category: Sushi.Category? = nil) {
+        filteredSushis = sushis.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sushis.count
+        return isFiltering ? filteredSushis.count : sushis.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SubtitleCell
-        let sushi = sushis[indexPath.row]
+        let sushi = isFiltering ? filteredSushis[indexPath.row] : sushis[indexPath.row]
         cell.textLabel?.text = sushi.name
         cell.detailTextLabel?.text = sushi.category.rawValue
         return cell
@@ -42,9 +77,16 @@ class SushiTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sushiDetailVC = SushiDetailViewController()
-        sushiDetailVC.sushi = sushis[indexPath.row]
+        sushiDetailVC.sushi = isFiltering ? filteredSushis[indexPath.row] : sushis[indexPath.row]
         navigationController?.pushViewController(sushiDetailVC, animated: true)
     }
 }
 
+extension SushiTableViewController : UISearchResultsUpdating {
 
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterSushiFor(searchText: searchBar.text!)
+    }
+    
+}
