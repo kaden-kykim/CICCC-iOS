@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
 
@@ -19,6 +20,7 @@ class ViewController: UIViewController {
         if defaults.object(forKey: Constants.UserDefalut.bluetoothSwitch) != nil {
             bluetoothSwitch.isOn = defaults.bool(forKey: Constants.UserDefalut.bluetoothSwitch)
         }
+        
     }
 
     @IBAction func saveSwitchState(_ sender: UISwitch) {

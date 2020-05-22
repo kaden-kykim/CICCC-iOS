@@ -14,6 +14,11 @@
 		6F675504247872D90048DD77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F675503247872D90048DD77 /* Assets.xcassets */; };
 		6F675507247872D90048DD77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F675505247872D90048DD77 /* LaunchScreen.storyboard */; };
 		6F67550F247874BD0048DD77 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F67550E247874BD0048DD77 /* Constants.swift */; };
+		6F675512247876730048DD77 /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6F675510247876730048DD77 /* Models.xcdatamodeld */; };
+		6F67553C247883F10048DD77 /* Hobby+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F675538247883F10048DD77 /* Hobby+CoreDataClass.swift */; };
+		6F67553D247883F10048DD77 /* Hobby+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F675539247883F10048DD77 /* Hobby+CoreDataProperties.swift */; };
+		6F67553E247883F20048DD77 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F67553A247883F10048DD77 /* Person+CoreDataClass.swift */; };
+		6F67553F247883F20048DD77 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F67553B247883F10048DD77 /* Person+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		6F675506247872D90048DD77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F675508247872D90048DD77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F67550E247874BD0048DD77 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6F675511247876730048DD77 /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
+		6F675538247883F10048DD77 /* Hobby+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hobby+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6F675539247883F10048DD77 /* Hobby+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hobby+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6F67553A247883F10048DD77 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6F67553B247883F10048DD77 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +68,16 @@
 		6F6754F9247872D50048DD77 /* UserDefaultDemo */ = {
 			isa = PBXGroup;
 			children = (
+				6F675538247883F10048DD77 /* Hobby+CoreDataClass.swift */,
+				6F675539247883F10048DD77 /* Hobby+CoreDataProperties.swift */,
+				6F67553A247883F10048DD77 /* Person+CoreDataClass.swift */,
+				6F67553B247883F10048DD77 /* Person+CoreDataProperties.swift */,
 				6F6754FA247872D50048DD77 /* AppDelegate.swift */,
 				6F6754FC247872D50048DD77 /* SceneDelegate.swift */,
 				6F6754FE247872D50048DD77 /* ViewController.swift */,
 				6F675500247872D50048DD77 /* Main.storyboard */,
 				6F67550E247874BD0048DD77 /* Constants.swift */,
+				6F675510247876730048DD77 /* Models.xcdatamodeld */,
 				6F675503247872D90048DD77 /* Assets.xcassets */,
 				6F675505247872D90048DD77 /* LaunchScreen.storyboard */,
 				6F675508247872D90048DD77 /* Info.plist */,
@@ -141,9 +156,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F67553E247883F20048DD77 /* Person+CoreDataClass.swift in Sources */,
 				6F6754FF247872D50048DD77 /* ViewController.swift in Sources */,
+				6F67553F247883F20048DD77 /* Person+CoreDataProperties.swift in Sources */,
 				6F6754FB247872D50048DD77 /* AppDelegate.swift in Sources */,
+				6F67553C247883F10048DD77 /* Hobby+CoreDataClass.swift in Sources */,
 				6F6754FD247872D50048DD77 /* SceneDelegate.swift in Sources */,
+				6F67553D247883F10048DD77 /* Hobby+CoreDataProperties.swift in Sources */,
+				6F675512247876730048DD77 /* Models.xcdatamodeld in Sources */,
 				6F67550F247874BD0048DD77 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +362,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6F675510247876730048DD77 /* Models.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6F675511247876730048DD77 /* Models.xcdatamodel */,
+			);
+			currentVersion = 6F675511247876730048DD77 /* Models.xcdatamodel */;
+			path = Models.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6F6754EF247872D50048DD77 /* Project object */;
 }
