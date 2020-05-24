@@ -12,6 +12,10 @@ class FilterBarCollectionViewCell: UICollectionViewCell {
     
     let filterLabel: UILabel = {
         let fl = UILabel()
+        fl.translatesAutoresizingMaskIntoConstraints = false
+        fl.textAlignment = .center
+        fl.font = .systemFont(ofSize: 15)
+        fl.setContentCompressionResistancePriority(.required, for: .horizontal)
         return fl
     }()
     
@@ -26,7 +30,7 @@ class FilterBarCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(filterLabel)
         contentView.layer.cornerRadius = 5.0
-        filterLabel.matchParent(padding: .init(top: 2, left: 8, bottom: 2, right: 8))
+        filterLabel.matchParent(padding: .init(top: 8, left: 12, bottom: 8, right: 12))
     }
     
     required init?(coder: NSCoder) {

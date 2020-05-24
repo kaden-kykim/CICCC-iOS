@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F675541247A26B50048DD77 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F675540247A26B50048DD77 /* Categories.swift */; };
 		6F88ED6024764FFB008C5265 /* FilterBarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88ED5F24764FFB008C5265 /* FilterBarCollectionViewController.swift */; };
 		6F88ED63247653CB008C5265 /* UIView+ConstraintLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88ED62247653CB008C5265 /* UIView+ConstraintLayout.swift */; };
 		6F88ED65247654C9008C5265 /* FilterBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88ED64247654C9008C5265 /* FilterBarCollectionViewCell.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F675540247A26B50048DD77 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		6F88ED5F24764FFB008C5265 /* FilterBarCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBarCollectionViewController.swift; sourceTree = "<group>"; };
 		6F88ED62247653CB008C5265 /* UIView+ConstraintLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ConstraintLayout.swift"; sourceTree = "<group>"; };
 		6F88ED64247654C9008C5265 /* FilterBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBarCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		6FBD31482475E708007E008F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6F675540247A26B50048DD77 /* Categories.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FBD31362475E67F007E008F /* FoodieViewController.swift in Sources */,
+				6F675541247A26B50048DD77 /* Categories.swift in Sources */,
 				6FBD31322475E67F007E008F /* AppDelegate.swift in Sources */,
 				6F88ED65247654C9008C5265 /* FilterBarCollectionViewCell.swift in Sources */,
 				6F88ED6724765A47008C5265 /* FoodieController.swift in Sources */,

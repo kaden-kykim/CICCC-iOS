@@ -12,18 +12,9 @@ class FoodieController {
     
     static let shared = FoodieController()
     
-    // MARK: - Getters
-    
-    var timeCategories: [String] {
-        get {
-            return [ "Breakfast and Brunch", "Lunch", "Dinner" ]
-        }
-    }
-    
-    var foodCategories: [String] {
-        get {
-            return [ "Korean", "Canadian", "Asian", "Cafe" ].sorted()
-        }
+    func fetchCategories(completion: @escaping ((Categories) -> Void)) {
+        let categories = Categories()
+        completion(categories)
     }
     
 }

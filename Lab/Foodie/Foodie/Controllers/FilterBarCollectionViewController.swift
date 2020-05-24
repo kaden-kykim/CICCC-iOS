@@ -13,10 +13,11 @@ private let itemSpacing: CGFloat = 8
 
 class FilterBarCollectionView: UICollectionView {
     
-    private let cellId = "FilterBarCell"
+    var filters = Categories() {
+        didSet { self.reloadData() }
+    }
     
-    private var timeFilters = [String]()
-    private var foodFilters = [String]()
+    private let cellId = "FilterBarCell"
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -25,8 +26,14 @@ class FilterBarCollectionView: UICollectionView {
     convenience init() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.sectionInset = .init(top: 12, left: 10, bottom: 12, right: 10)
         layout.minimumInteritemSpacing = itemSpacing
         self.init(frame: .zero, collectionViewLayout: layout)
+        showsHorizontalScrollIndicator = false
+        backgroundColor = .systemGray6
+        dataSource = self
+        delegate = self
         register(FilterBarCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
     }
     
@@ -37,26 +44,36 @@ class FilterBarCollectionView: UICollectionView {
 }
 
 extension FilterBarCollectionView : UICollectionViewDataSource {
-        
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            return FoodieController.shared.timeCategories.count
+            return filters.time.count
         } else if section == 1 {
-            return FoodieController.shared.foodCategories.count
+            return filters.food.count
         }
         return 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FilterBarCollectionViewCell
+        cell.filterLabel.text = {
+            switch indexPath.section {
+            case 0:
+                return filters.time[indexPath.row]
+            case 1:
+                return filters.food[indexPath.row]
+            default:
+                return ""
+            }
+        }()
+        cell.filtered = false
         return cell
     }
-
+    
 }
 
 extension FilterBarCollectionView : UICollectionViewDelegate {
