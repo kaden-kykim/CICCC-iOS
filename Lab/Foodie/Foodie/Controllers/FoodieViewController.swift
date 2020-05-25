@@ -8,7 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+protocol FoodieDelegate {
+    
+    func filterItem(_ indexPath: IndexPath)
+    
+}
+
+class FoodieViewController: UIViewController {
     
     private let filterBarCollectionView: FilterBarCollectionView = {
         let filterBarCV = FilterBarCollectionView()
@@ -30,15 +36,17 @@ class ViewController: UIViewController {
     }
     
     private func setupFilterBarCollectionView() {
-        FoodieController.shared.fetchCategories {
-            self.filterBarCollectionView.filters = $0
-        }
         view.addSubview(filterBarCollectionView)
+        filterBarCollectionView.setFoodieDelegate(foodieDelegate: self)
         filterBarCollectionView.anchors(topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.safeAreaLayoutGuide.leadingAnchor, trailingAnchor: view.safeAreaLayoutGuide.trailingAnchor, bottomAnchor: nil)
     }
     
 }
 
-extension FilterBarCollectionView : UICollectionViewDelegate {
+extension FoodieViewController : FoodieDelegate {
+    
+    func filterItem(_ indexPath: IndexPath) {
+        print(indexPath)
+    }
     
 }

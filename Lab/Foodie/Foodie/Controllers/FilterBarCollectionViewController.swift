@@ -6,39 +6,52 @@
 //  Copyright © 2020 CICCC. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 private let itemSpacing: CGFloat = 8
 
 class FilterBarCollectionView: UICollectionView {
     
-    var filters = Categories() {
-        didSet { self.reloadData() }
-    }
+    var foodieDelegate: FoodieDelegate?
+        
+    private var categories: [[String]?] = .init(repeating: nil, count: 2)
+    private var filters: [[Bool]?] = .init(repeating: nil, count: 2)
     
     private let cellId = "FilterBarCell"
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: FoodieController.restaurantsUpdatedNotification, object: nil)
     }
     
-    convenience init(delegate: UICollectionViewDelegate) {
+    convenience init() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        layout.sectionInset = .init(top: 12, left: 10, bottom: 12, right: 10)
+        layout.sectionInset = .init(top: 0, left: 10, bottom: 0, right: 10)
         layout.minimumInteritemSpacing = itemSpacing
         self.init(frame: .zero, collectionViewLayout: layout)
+        dataSource = self
+        delegate = self
+        register(FilterBarCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         showsHorizontalScrollIndicator = false
         backgroundColor = .systemGray6
-        self.dataSource = self
-        self.delegate = delegate
-        register(FilterBarCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setFoodieDelegate(foodieDelegate: FoodieDelegate) {
+        self.foodieDelegate = foodieDelegate
+    }
+    
+    @objc private func updateUI() {
+        categories[0] = FoodieController.shared.timeCategories
+        categories[1] = FoodieController.shared.foodCategories
+        filters[0] = .init(repeating: false, count: categories[0]?.count ?? 0)
+        filters[1] = .init(repeating: false, count: categories[1]?.count ?? 0)
+        reloadData()
     }
     
 }
@@ -50,28 +63,25 @@ extension FilterBarCollectionView : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            return filters.time.count
-        } else if section == 1 {
-            return filters.food.count
-        }
-        return 0
+        return categories[section]?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FilterBarCollectionViewCell
-        cell.filterLabel.text = {
-            switch indexPath.section {
-            case 0:
-                return filters.time[indexPath.row]
-            case 1:
-                return filters.food[indexPath.row]
-            default:
-                return ""
-            }
-        }()
-        cell.filtered = false
+        cell.filterLabel.text = categories[indexPath.section]?[indexPath.row] ?? ""
+        cell.filtered = filters[indexPath.section]?[indexPath.row] ?? false
+        cell.setContentCompressionResistancePriority(.required, for: .horizontal)
         return cell
     }
     
+}
+
+extension FilterBarCollectionView : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let filtered = filters[indexPath.section]?[indexPath.row] {
+            filters[indexPath.section]?[indexPath.row] = !filtered
+            reloadData()
+        }
+        foodieDelegate?.filterItem(indexPath)
+    }
 }
