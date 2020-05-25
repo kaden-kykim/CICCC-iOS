@@ -23,7 +23,7 @@ class FilterBarCollectionView: UICollectionView {
         super.init(frame: frame, collectionViewLayout: layout)
     }
     
-    convenience init() {
+    convenience init(delegate: UICollectionViewDelegate) {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -32,8 +32,8 @@ class FilterBarCollectionView: UICollectionView {
         self.init(frame: .zero, collectionViewLayout: layout)
         showsHorizontalScrollIndicator = false
         backgroundColor = .systemGray6
-        dataSource = self
-        delegate = self
+        self.dataSource = self
+        self.delegate = delegate
         register(FilterBarCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
     }
     
@@ -73,9 +73,5 @@ extension FilterBarCollectionView : UICollectionViewDataSource {
         cell.filtered = false
         return cell
     }
-    
-}
-
-extension FilterBarCollectionView : UICollectionViewDelegate {
     
 }

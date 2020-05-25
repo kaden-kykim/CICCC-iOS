@@ -38,3 +38,7 @@ class ViewController: UIViewController {
     }
     
 }
+
+extension FilterBarCollectionView : UICollectionViewDelegate {
+    
+}
