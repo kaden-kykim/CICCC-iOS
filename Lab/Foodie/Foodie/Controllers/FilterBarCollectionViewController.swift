@@ -74,18 +74,24 @@ extension FilterBarCollectionView : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         filters[indexPath.section][indexPath.row] = !filters[indexPath.section][indexPath.row]
         reloadData()
-        var filteredRestaurants = [Restaurant]()
+        var filteredRestaurants = [[Restaurant]].init(repeating: [Restaurant](), count: 2)
         for (type, filter) in filters.enumerated() {
             for (index, filtered) in filter.enumerated() {
                 if filtered, let restaurants = FoodieController.shared.restaurants(in: categories[type][index], of: type) {
-                    filteredRestaurants.append(contentsOf: restaurants)
+                    filteredRestaurants[type].append(contentsOf:restaurants)
                 }
             }
         }
-        if filteredRestaurants.count != 0 {
-            foodieDelegate?.filterItem(Array(Set(filteredRestaurants.map { $0 })).sorted())
-        } else {
+        let timeTypeSet = Set(filteredRestaurants[FoodieController.TIME_INDEX].map { $0 })
+        let foodTypeSet = Set(filteredRestaurants[FoodieController.FOOD_INDEX].map { $0 })
+        if timeTypeSet.isEmpty && foodTypeSet.isEmpty {
             foodieDelegate?.filterItem(FoodieController.shared.restaurants)
+        } else if timeTypeSet.isEmpty {
+            foodieDelegate?.filterItem(Array(foodTypeSet).sorted())
+        } else if foodTypeSet.isEmpty {
+            foodieDelegate?.filterItem(Array(timeTypeSet).sorted())
+        } else {
+            foodieDelegate?.filterItem(Array(timeTypeSet.intersection(foodTypeSet)).sorted())
         }
     }
 }
