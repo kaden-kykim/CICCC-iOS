@@ -14,6 +14,11 @@ private let sectionInsets: UIEdgeInsets = .init(top: 6, left: 12, bottom: 6, rig
 class RestaurantCollectionView: UICollectionView {
     
     var restaurants = [Restaurant]()
+    var isOneColumnLayout = false {
+        didSet {
+            DispatchQueue.main.async { self.reloadSections(IndexSet(integer: 0)) }
+        }
+    }
     
     private let cellId = "RestaurantCell"
     
@@ -81,7 +86,7 @@ extension RestaurantCollectionView : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 2 - 16
-        return CGSize.init(width: width, height: width + 45)
+        return CGSize.init(width: (isOneColumnLayout) ? width * 2 + 8 : width, height: width + 45)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

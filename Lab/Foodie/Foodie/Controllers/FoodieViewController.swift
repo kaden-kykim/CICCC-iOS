@@ -32,6 +32,8 @@ class FoodieViewController: UIViewController {
         view.backgroundColor = .systemGray6
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.barTintColor = .tertiarySystemBackground
+        navigationItem.rightBarButtonItem = .init(image: UIImage.init(systemName: "rectangle.grid.2x2"),
+                                                  style: UIBarButtonItem.Style.plain, target: self, action: #selector(layoutChange))
         
         navigationItem.title = "Foodie"
         navigationItem.largeTitleDisplayMode = .never
@@ -49,6 +51,11 @@ class FoodieViewController: UIViewController {
     private func setupRestaurantCollectionView() {
         view.addSubview(restaurantCollectionView)
         restaurantCollectionView.anchors(topAnchor: filterBarCollectionView.bottomAnchor, leadingAnchor: view.safeAreaLayoutGuide.leadingAnchor, trailingAnchor: view.safeAreaLayoutGuide.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
+    }
+    
+    @objc private func layoutChange() {
+        restaurantCollectionView.isOneColumnLayout = !restaurantCollectionView.isOneColumnLayout
+        navigationItem.rightBarButtonItem?.image = UIImage.init(systemName: (restaurantCollectionView.isOneColumnLayout) ? "rectangle.grid.1x2" : "rectangle.grid.2x2")
     }
     
 }
