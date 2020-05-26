@@ -7,24 +7,28 @@
 //
 
 import Foundation
+import UIKit
 
 class FoodieController {
     
     static let restaurantsUpdatedNotification = Notification.Name("FoodieController.restaurantDataUpdated")
     static let shared = FoodieController()
     
+    static let TIME_INDEX = 0, FOOD_INDEX = 1
+    
     private var restaurantByID = [Int: Restaurant]()
-    private var restaurantByTimeCategory = [String: [Restaurant]]()
-    private var restaurantByFoodCategory = [String: [Restaurant]]()
+    private var restaurantByCategory = [[String: [Restaurant]]].init(repeating: [String : [Restaurant]](), count: 2)
     
     // MARK: - Getters
     
+    private(set) var restaurants = [Restaurant]()
+    
     var timeCategories: [String] {
-        get { return restaurantByTimeCategory.keys.sorted() }
+        get { return restaurantByCategory[FoodieController.TIME_INDEX].keys.sorted() }
     }
     
     var foodCategories: [String] {
-        get { return restaurantByFoodCategory.keys.sorted() }
+        get { return restaurantByCategory[FoodieController.FOOD_INDEX].keys.sorted() }
     }
     
     func restaurant(withID restaurantID: Int) -> Restaurant? {
@@ -32,11 +36,11 @@ class FoodieController {
     }
     
     func restaurant(forTimeCategory category: String) -> [Restaurant]? {
-        return restaurantByTimeCategory[category]
+        return restaurantByCategory[FoodieController.TIME_INDEX][category]
     }
     
     func restaurant(forFoodCategory category: String) -> [Restaurant]? {
-        return restaurantByFoodCategory[category]
+        return restaurantByCategory[FoodieController.FOOD_INDEX][category]
     }
     
     // MARK: - Data Interface
@@ -49,16 +53,17 @@ class FoodieController {
     
     private func processData(_ restaurants: [Restaurant]) {
         restaurantByID.removeAll()
-        restaurantByTimeCategory.removeAll()
-        restaurantByFoodCategory.removeAll()
+        restaurantByCategory[FoodieController.TIME_INDEX].removeAll()
+        restaurantByCategory[FoodieController.FOOD_INDEX].removeAll()
         
+        self.restaurants = restaurants
         for restaurant in restaurants {
             restaurantByID[restaurant.id] = restaurant
             for time in restaurant.timeCategories {
-                restaurantByTimeCategory[time, default: []].append(restaurant)
+                restaurantByCategory[FoodieController.TIME_INDEX][time, default: []].append(restaurant)
             }
             for food in restaurant.foodCategories {
-                restaurantByFoodCategory[food, default: []].append(restaurant)
+                restaurantByCategory[FoodieController.FOOD_INDEX][food, default: []].append(restaurant)
             }
         }
         
@@ -67,8 +72,19 @@ class FoodieController {
         }
     }
     
-    func fetchRestaurants(completion: @escaping (([Restaurant]) -> Void)) {
+    func fetchRestaurants(completion: @escaping ([Restaurant]) -> Void) {
         completion(sampleRestaurants())
     }
     
+    func fetchImage(url: URL, completion: @escaping (UIImage?) -> Void) {
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let data = data, let image = UIImage(data: data) {
+                completion(image)
+            } else {
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+        
 }

@@ -21,6 +21,12 @@ class FoodieViewController: UIViewController {
         return filterBarCV
     }()
     
+    private let restaurantCollectionView: RestaurantCollectionView = {
+        let restaurantCV = RestaurantCollectionView()
+        restaurantCV.translatesAutoresizingMaskIntoConstraints = false
+        return restaurantCV
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
@@ -35,8 +41,13 @@ class FoodieViewController: UIViewController {
     
     private func setupFilterBarCollectionView() {
         view.addSubview(filterBarCollectionView)
-        filterBarCollectionView.setFoodieDelegate(foodieDelegate: self)
+        filterBarCollectionView.foodieDelegate = self
         filterBarCollectionView.anchors(topAnchor: view.safeAreaLayoutGuide.topAnchor, leadingAnchor: view.safeAreaLayoutGuide.leadingAnchor, trailingAnchor: view.safeAreaLayoutGuide.trailingAnchor, bottomAnchor: nil)
+    }
+    
+    private func setupRestaurantCollectionView() {
+        view.addSubview(restaurantCollectionView)
+        restaurantCollectionView.anchors(topAnchor: filterBarCollectionView.bottomAnchor, leadingAnchor: view.safeAreaLayoutGuide.leadingAnchor, trailingAnchor: view.safeAreaLayoutGuide.trailingAnchor, bottomAnchor: view.safeAreaLayoutGuide.bottomAnchor)
     }
     
 }

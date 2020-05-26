@@ -12,6 +12,8 @@
 		6F88ED65247654C9008C5265 /* FilterBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88ED64247654C9008C5265 /* FilterBarCollectionViewCell.swift */; };
 		6F88ED6724765A47008C5265 /* FoodieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F88ED6624765A47008C5265 /* FoodieController.swift */; };
 		6FAFAD46247C0C81007C994D /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAFAD45247C0C81007C994D /* Restaurant.swift */; };
+		6FAFAD48247D9C5B007C994D /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAFAD47247D9C5B007C994D /* RestaurantCollectionViewCell.swift */; };
+		6FAFAD4A247DA52A007C994D /* RestaurantCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FAFAD49247DA52A007C994D /* RestaurantCollectionViewController.swift */; };
 		6FBD31322475E67F007E008F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD31312475E67F007E008F /* AppDelegate.swift */; };
 		6FBD31342475E67F007E008F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD31332475E67F007E008F /* SceneDelegate.swift */; };
 		6FBD31362475E67F007E008F /* FoodieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD31352475E67F007E008F /* FoodieViewController.swift */; };
@@ -25,6 +27,8 @@
 		6F88ED64247654C9008C5265 /* FilterBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		6F88ED6624765A47008C5265 /* FoodieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodieController.swift; sourceTree = "<group>"; };
 		6FAFAD45247C0C81007C994D /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		6FAFAD47247D9C5B007C994D /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
+		6FAFAD49247DA52A007C994D /* RestaurantCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewController.swift; sourceTree = "<group>"; };
 		6FBD312E2475E67F007E008F /* Foodie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FBD31312475E67F007E008F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FBD31332475E67F007E008F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 				6F88ED6624765A47008C5265 /* FoodieController.swift */,
 				6FBD31352475E67F007E008F /* FoodieViewController.swift */,
 				6F88ED5F24764FFB008C5265 /* FilterBarCollectionViewController.swift */,
+				6FAFAD49247DA52A007C994D /* RestaurantCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -107,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				6F88ED64247654C9008C5265 /* FilterBarCollectionViewCell.swift */,
+				6FAFAD47247D9C5B007C994D /* RestaurantCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -194,7 +200,9 @@
 				6F88ED65247654C9008C5265 /* FilterBarCollectionViewCell.swift in Sources */,
 				6F88ED6724765A47008C5265 /* FoodieController.swift in Sources */,
 				6F88ED63247653CB008C5265 /* UIView+ConstraintLayout.swift in Sources */,
+				6FAFAD4A247DA52A007C994D /* RestaurantCollectionViewController.swift in Sources */,
 				6F88ED6024764FFB008C5265 /* FilterBarCollectionViewController.swift in Sources */,
+				6FAFAD48247D9C5B007C994D /* RestaurantCollectionViewCell.swift in Sources */,
 				6FAFAD46247C0C81007C994D /* Restaurant.swift in Sources */,
 				6FBD31342475E67F007E008F /* SceneDelegate.swift in Sources */,
 			);
