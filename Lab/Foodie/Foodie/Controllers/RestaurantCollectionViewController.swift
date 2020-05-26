@@ -31,7 +31,7 @@ class RestaurantCollectionView: UICollectionView {
         dataSource = self
         delegate = self
         register(RestaurantCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-        backgroundColor = .systemBackground
+        backgroundColor = .systemGray6
     }
     
     required init?(coder: NSCoder) {
@@ -59,23 +59,32 @@ extension RestaurantCollectionView : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RestaurantCollectionViewCell
         let restaurant = restaurants[indexPath.row]
-        FoodieController.shared.fetchImage(url: restaurant.imageURL) {
-            guard let image = $0 else { return }
-            DispatchQueue.main.async {
-                if let currentIndexPath = self.indexPath(for: cell), currentIndexPath != indexPath { return }
-                cell.imageView.image = image
-                cell.setNeedsLayout()
+        if let imageURL = restaurant.imageURL {
+            FoodieController.shared.fetchImage(url: imageURL) {
+                guard let image = $0 else { return }
+                DispatchQueue.main.async {
+                    if let currentIndexPath = self.indexPath(for: cell), currentIndexPath != indexPath { return }
+                    cell.imageView.image = image
+                    cell.setNeedsLayout()
+                }
             }
         }
         cell.nameLabel.text = restaurant.name
         cell.costLabel.text = Array(repeating: "$", count: restaurant.cost).reduce("", +)
-        cell.timeCategoriesLabel.text = restaurant.timeCategories.reduce("") { $0 + ", " + $1 }
-        cell.foodCategoriesLabel.text = restaurant.foodCategories.reduce("") { $0 + ", " + $1 }
+        cell.timeCategoriesLabel.text = restaurant.timeCategories.joined(separator: ", ")
+        cell.foodCategoriesLabel.text = restaurant.foodCategories.joined(separator: ", ")
+        cell.layoutIfNeeded()
         return cell
     }
 }
 
 extension RestaurantCollectionView : UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.frame.width / 2 - 16
+        return CGSize.init(width: width, height: width + 45)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInsets
     }

@@ -37,6 +37,7 @@ class FoodieViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         
         setupFilterBarCollectionView()
+        setupRestaurantCollectionView()
     }
     
     private func setupFilterBarCollectionView() {
