@@ -15,7 +15,6 @@ class FilterBarCollectionViewCell: UICollectionViewCell {
         fl.translatesAutoresizingMaskIntoConstraints = false
         fl.textAlignment = .center
         fl.font = .systemFont(ofSize: 15)
-        fl.setContentCompressionResistancePriority(.required, for: .horizontal)
         return fl
     }()
     

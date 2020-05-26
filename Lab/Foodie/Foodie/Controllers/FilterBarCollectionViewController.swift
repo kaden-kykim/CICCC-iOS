@@ -27,8 +27,6 @@ class FilterBarCollectionView: UICollectionView {
     convenience init() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        layout.sectionInset = .init(top: 0, left: 10, bottom: 0, right: 10)
         layout.minimumInteritemSpacing = itemSpacing
         self.init(frame: .zero, collectionViewLayout: layout)
         dataSource = self
@@ -70,7 +68,6 @@ extension FilterBarCollectionView : UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FilterBarCollectionViewCell
         cell.filterLabel.text = categories[indexPath.section]?[indexPath.row] ?? ""
         cell.filtered = filters[indexPath.section]?[indexPath.row] ?? false
-        cell.setContentCompressionResistancePriority(.required, for: .horizontal)
         return cell
     }
     
@@ -83,5 +80,16 @@ extension FilterBarCollectionView : UICollectionViewDelegate {
             reloadData()
         }
         foodieDelegate?.filterItem(indexPath)
+    }
+}
+
+extension FilterBarCollectionView : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = categories[indexPath.section]?[indexPath.row].size(withAttributes: [.font: UIFont.systemFont(ofSize: 15)]).width ?? 0
+        return CGSize.init(width: width + 25, height: 34)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 0, left: 10, bottom: 0, right: 10)
     }
 }

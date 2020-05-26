@@ -9,9 +9,7 @@
 import UIKit
 
 protocol FoodieDelegate {
-    
     func filterItem(_ indexPath: IndexPath)
-    
 }
 
 class FoodieViewController: UIViewController {
@@ -27,7 +25,7 @@ class FoodieViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
         navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.backgroundColor = .systemFill
+        navigationController?.navigationBar.barTintColor = .tertiarySystemBackground
         
         navigationItem.title = "Foodie"
         navigationItem.largeTitleDisplayMode = .never
