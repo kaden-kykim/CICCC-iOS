@@ -64,7 +64,7 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
         imageView.matchParent(padding: .init(top: 0, left: 0, bottom: cvSize.height * 0.35, right: 0))
         nameLabel.anchors(topAnchor: imageView.bottomAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, bottomAnchor: nil, padding: .init(top: 6, left: 6, bottom: 0, right: cvSize.width * 0.2))
         costLabel.anchors(topAnchor: imageView.bottomAnchor, leadingAnchor: nameLabel.trailingAnchor, trailingAnchor: contentView.trailingAnchor, bottomAnchor: nil, padding: .init(top: 10, left: 6, bottom: 0, right: 6))
-        timeCategoriesLabel.anchors(topAnchor: costLabel.bottomAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, bottomAnchor: nil, padding: .init(top: 12, left: 6, bottom: 0, right: 6))
+        timeCategoriesLabel.anchors(topAnchor: costLabel.bottomAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, bottomAnchor: nil, padding: .init(top: 10, left: 6, bottom: 0, right: 6))
         foodCategoriesLabel.anchors(topAnchor: timeCategoriesLabel.bottomAnchor, leadingAnchor: contentView.leadingAnchor, trailingAnchor: contentView.trailingAnchor, bottomAnchor: nil, padding: .init(top: 4, left: 6, bottom: 0, right: 6))
     }
     

@@ -16,7 +16,7 @@ class RestaurantCollectionView: UICollectionView {
     var restaurants = [Restaurant]()
     
     private let cellId = "RestaurantCell"
-
+    
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         NotificationCenter.default.addObserver(self, selector: #selector(initUI), name: FoodieController.restaurantsUpdatedNotification, object: nil)
@@ -40,22 +40,23 @@ class RestaurantCollectionView: UICollectionView {
     
     func updateRestaurants(_ restaurants: [Restaurant]) {
         self.restaurants = restaurants
-        reloadData()
+        DispatchQueue.main.async { self.reloadSections(IndexSet(integer: 0)) }
+        
     }
     
     @objc private func initUI() {
         restaurants = FoodieController.shared.restaurants
-        reloadData()
+        DispatchQueue.main.async { self.reloadSections(IndexSet(integer: 0)) }
     }
     
 }
 
 extension RestaurantCollectionView : UICollectionViewDataSource {
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return restaurants.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RestaurantCollectionViewCell
         let restaurant = restaurants[indexPath.row]
@@ -65,7 +66,6 @@ extension RestaurantCollectionView : UICollectionViewDataSource {
                 DispatchQueue.main.async {
                     if let currentIndexPath = self.indexPath(for: cell), currentIndexPath != indexPath { return }
                     cell.imageView.image = image
-                    cell.setNeedsLayout()
                 }
             }
         }
@@ -73,7 +73,6 @@ extension RestaurantCollectionView : UICollectionViewDataSource {
         cell.costLabel.text = Array(repeating: "$", count: restaurant.cost).reduce("", +)
         cell.timeCategoriesLabel.text = restaurant.timeCategories.joined(separator: ", ")
         cell.foodCategoriesLabel.text = restaurant.foodCategories.joined(separator: ", ")
-        cell.layoutIfNeeded()
         return cell
     }
 }
@@ -88,4 +87,5 @@ extension RestaurantCollectionView : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInsets
     }
+    
 }

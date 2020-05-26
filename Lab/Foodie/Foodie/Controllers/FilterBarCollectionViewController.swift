@@ -14,7 +14,7 @@ private let sectionInsets: UIEdgeInsets = .init(top: 0, left: 10, bottom: 0, rig
 class FilterBarCollectionView: UICollectionView {
     
     var foodieDelegate: FoodieDelegate?
-        
+    
     private var categories = [[String]]()
     private var filters = [[Bool]]()
     
@@ -74,7 +74,19 @@ extension FilterBarCollectionView : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         filters[indexPath.section][indexPath.row] = !filters[indexPath.section][indexPath.row]
         reloadData()
-        foodieDelegate?.filterItem(indexPath)
+        var filteredRestaurants = [Restaurant]()
+        for (type, filter) in filters.enumerated() {
+            for (index, filtered) in filter.enumerated() {
+                if filtered, let restaurants = FoodieController.shared.restaurants(in: categories[type][index], of: type) {
+                    filteredRestaurants.append(contentsOf: restaurants)
+                }
+            }
+        }
+        if filteredRestaurants.count != 0 {
+            foodieDelegate?.filterItem(Array(Set(filteredRestaurants.map { $0 })).sorted())
+        } else {
+            foodieDelegate?.filterItem(FoodieController.shared.restaurants)
+        }
     }
 }
 

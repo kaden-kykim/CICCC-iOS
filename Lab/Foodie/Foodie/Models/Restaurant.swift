@@ -8,7 +8,11 @@
 
 import Foundation
 
-struct Restaurant: Codable {
+struct Restaurant: Codable, Hashable, Comparable {
+    static func < (lhs: Restaurant, rhs: Restaurant) -> Bool {
+        lhs.id < rhs.id
+    }
+    
     let id: Int
     let name: String
     let cost: Int

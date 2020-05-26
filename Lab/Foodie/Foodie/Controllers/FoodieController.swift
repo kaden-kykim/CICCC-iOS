@@ -35,12 +35,8 @@ class FoodieController {
         return restaurantByID[restaurantID]
     }
     
-    func restaurant(forTimeCategory category: String) -> [Restaurant]? {
-        return restaurantByCategory[FoodieController.TIME_INDEX][category]
-    }
-    
-    func restaurant(forFoodCategory category: String) -> [Restaurant]? {
-        return restaurantByCategory[FoodieController.FOOD_INDEX][category]
+    func restaurants(in category: String, of type: Int) -> [Restaurant]? {
+        return restaurantByCategory[type][category]
     }
     
     // MARK: - Data Interface
@@ -86,5 +82,5 @@ class FoodieController {
         }
         task.resume()
     }
-        
+    
 }

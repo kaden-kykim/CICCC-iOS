@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FoodieDelegate {
-    func filterItem(_ indexPath: IndexPath)
+    func filterItem(_ restaurants: [Restaurant])
 }
 
 class FoodieViewController: UIViewController {
@@ -55,8 +55,8 @@ class FoodieViewController: UIViewController {
 
 extension FoodieViewController : FoodieDelegate {
     
-    func filterItem(_ indexPath: IndexPath) {
-        print(indexPath)
+    func filterItem(_ restaurants: [Restaurant]) {
+        restaurantCollectionView.updateRestaurants(restaurants)
     }
     
 }
