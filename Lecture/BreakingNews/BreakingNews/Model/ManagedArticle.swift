@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class ManagedArticle: NSManagedObject {
-    class func findOrCreateArticle(matching articleInfo: Article, in context: NSManagedObjectContext) throws -> ManagedArticle {
+    class func findOrCreateArticle(matching articleInfo: Article, with searchText: String, in context: NSManagedObjectContext) throws -> ManagedArticle {
         let request: NSFetchRequest<ManagedArticle> = ManagedArticle.fetchRequest()
         request.predicate = NSPredicate(format: "title = %@", articleInfo.title)
         // NSSortDescriptor possible
@@ -18,7 +18,9 @@ class ManagedArticle: NSManagedObject {
             let matches = try context.fetch(request)
             if matches.count > 0 {
                 assert(matches.count == 1, "ManagedArticle.findOrCreateArticle -- database inconsistency")
-                return matches[0]
+                let matchedArticle = matches[0]
+                matchedArticle.searchText = searchText
+                return matchedArticle
             }
         } catch {
             throw error
@@ -29,6 +31,7 @@ class ManagedArticle: NSManagedObject {
         article.title = articleInfo.title
         article.author = articleInfo.author
         article.url = articleInfo.url
+        article.searchText = searchText
         if let urlStr = articleInfo.urlToImage {
             article.urlToImage = URL(string: urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
         }

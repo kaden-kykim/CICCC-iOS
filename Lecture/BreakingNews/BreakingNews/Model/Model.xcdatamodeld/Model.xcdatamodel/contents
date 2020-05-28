@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F96" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ManagedArticle" representedClassName=".ManagedArticle" syncable="YES" codeGenerationType="category">
         <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="searchText" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <attribute name="urlToImage" optional="YES" attributeType="URI"/>
         <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedSource" inverseName="articles" inverseEntity="ManagedSource"/>
     </entity>
     <entity name="ManagedSource" representedClassName=".ManagedSource" syncable="YES" codeGenerationType="category">
+        <attribute name="firstLetter" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="articles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedArticle" inverseName="source" inverseEntity="ManagedArticle"/>
     </entity>
     <elements>
-        <element name="ManagedSource" positionX="199.26953125" positionY="41.43359375" width="128" height="73"/>
-        <element name="ManagedArticle" positionX="-68.12109375" positionY="-1.9453125" width="128" height="118"/>
+        <element name="ManagedArticle" positionX="-68.12109375" positionY="-1.9453125" width="128" height="133"/>
+        <element name="ManagedSource" positionX="199.26953125" positionY="41.43359375" width="128" height="88"/>
     </elements>
 </model>

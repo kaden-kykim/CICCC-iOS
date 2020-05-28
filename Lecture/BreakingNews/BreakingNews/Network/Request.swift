@@ -11,36 +11,108 @@ import UIKit
 // TODO: Need to generate
 private let API_KEY = "API_KEY"
 
-struct NewsAPI {
+class NewsAPIRequest {
     
-    enum EndPoints: String {
-        case baseURL = "https://newsapi.org/v2/"
-        case topHeadlines = "https://newsapi.org/v2/top-headlines"
-        case everything = "https://newsapi.org/v2/everything"
+    static let shared = NewsAPIRequest()
+    
+    private var dataTask: URLSessionDataTask?
+    
+    private init() { }
+    
+    func getEverything(with query: String, completion: @escaping (Articles?) -> Void) {
+        let url = URL(string: EndPoint.everything)!
+            .withQueries(
+                [Parameter.q: query,
+                 Parameter.apiKey: API_KEY,
+                 Parameter.country: "us"])!
+        fetch(from: url) { (result: Result<Articles, NetworkError>) in
+            switch result {
+            case .success(let articles):
+                completion(articles)
+            case .failure(let error):
+                debugPrint(error.errorDescription!)
+                completion(nil)
+            }
+        }
     }
     
-    static func getTopHeadlines(with query: String, completion: @escaping (Articles?) -> Void) {
-        let url = URL(string: EndPoints.topHeadlines.rawValue)!.withQueries(["q": query, "apiKey": API_KEY, "country": "us"])!
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, err) in
-            if let err = err {
-                debugPrint(err.localizedDescription)
+    func getTopHeadlines(with query: String, completion: @escaping (Articles?) -> Void) {
+        let url = URL(string: EndPoint.topHeadlines)!
+            .withQueries(
+                [Parameter.q: query,
+                 Parameter.apiKey: API_KEY,
+                 Parameter.country: "us"])!
+        fetch(from: url) { (result: Result<Articles, NetworkError>) in
+            switch result {
+            case .success(let articles):
+                completion(articles)
+            case .failure(let error):
+                debugPrint(error.errorDescription!)
                 completion(nil)
+            }
+        }
+    }
+    
+    func fetch<T: Decodable>(from url: URL, completion: @escaping (Result<T, NetworkError>) -> Void) {
+        dataTask?.cancel()
+        
+        dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard error == nil else {
+                completion(.failure(.client(message: "invalid request")))
                 return
             }
             
-            if let data = data {
-                let decoder = JSONDecoder()
-                
-                do {
-                    let articles = try decoder.decode(Articles.self, from: data)
-                    completion(articles)
-                } catch {
-                    debugPrint(error.localizedDescription)
+            guard let res = response as? HTTPURLResponse, (200...299).contains(res.statusCode) else {
+                completion(.failure(.server))
+                return
+            }
+            
+            do {
+                guard let data = data else {
+                    completion(.failure(.client(message: "data is nil")))
+                    return
                 }
+                let decodable = try JSONDecoder().decode(T.self, from: data)
+                completion(.success(decodable))
+            } catch {
+                completion(.failure(.client(message: error.localizedDescription)))
             }
         }
+        dataTask?.resume()
         
-        task.resume()
+    }
+    
+    struct EndPoint {
+        static let baseURL = "https://newsapi.org/v2/"
+        static let topHeadlines = "https://newsapi.org/v2/top-headlines"
+        static let everything = "https://newsapi.org/v2/everything"
+    }
+    
+    struct Parameter {
+        static let q = "q"
+        static let apiKey = "apiKey"
+        static let country = "country"
+    }
+    
+    enum NetworkError: Error {
+        case client(message: String)
+        case server
+    }
+}
+
+extension NewsAPIRequest.NetworkError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .server:
+            return NSLocalizedString(
+                "Server error!",
+                comment: ""
+            )
+        case .client(let message):
+            return NSLocalizedString(
+                "Client error! - \(message)",
+                comment: ""
+            )
+        }
     }
 }
