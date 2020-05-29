@@ -9,5 +9,5 @@
 import Foundation
 
 struct APIKeys {
-    static let unsplash = "API_KEY_HERE"
+    static let unsplash = ""
 }
