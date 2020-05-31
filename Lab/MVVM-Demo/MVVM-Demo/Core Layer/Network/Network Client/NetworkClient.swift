@@ -33,7 +33,7 @@ final class NetworkClient {
                 }
                 
                 if !parameters.isEmpty {
-                    urlComponents.queryItems = parameters.compactMap{
+                    urlComponents.queryItems = parameters.compactMap {
                         URLQueryItem(name: $0.key, value: $0.value)
                     }
                 }

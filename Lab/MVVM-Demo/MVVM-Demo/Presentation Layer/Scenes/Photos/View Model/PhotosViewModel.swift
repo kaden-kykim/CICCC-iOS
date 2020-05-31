@@ -62,6 +62,13 @@ final class PhotosViewModelImplementation: PhotosViewModel {
         self.photoLoadingService = photoLoadingService
         self.dataToImageService = dataToImageService
         self.coordinator = coordinator
+        
+        bindOnViewDidLoad()
+        bindOnWillDisplayCell()
+        bindOnDidEndDisplayCell()
+        bindOnDidScrollToBottom()
+        bindPageNumber()
+        bindOnDidChoosePhoto()
     }
     
     // MARK: - Bindings

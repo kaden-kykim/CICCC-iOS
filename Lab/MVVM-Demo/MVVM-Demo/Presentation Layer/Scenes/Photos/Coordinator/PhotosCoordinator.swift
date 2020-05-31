@@ -20,7 +20,20 @@ class PhotosCoordinatorImplementation: Coordinator {
     }
     
     func start() {
-//        let photosViewController = PhotosViewController()
-//        let photosViewModel = PhotosViewModelImplementation(
+        let photosViewController = PhotosViewController()
+        let photosViewModel = PhotosViewModelImplementation(
+            photosService: UnsplashPhotosServiceImplementation(),
+            photoLoadingService: DataLoadingServiceImplementation(),
+            dataToImageService: DataToImageConversionServiceImplementation(),
+            coordinator: self)
+        photosViewController.viewModel = photosViewModel
+        navigationController.pushViewController(photosViewController, animated: true)
+    }
+}
+
+extension PhotosCoordinatorImplementation: PhotosCoordinator {
+    func pushToPhotoDetail(with photoId: String) {
+        let photoDetailCoordinator = PhotoDetailCoordinatorImplementation(navigationController: navigationController, photoId: photoId)
+        coordinate(to: photoDetailCoordinator)
     }
 }
