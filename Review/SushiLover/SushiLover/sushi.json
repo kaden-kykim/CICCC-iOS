@@ -1,0 +1,20 @@
+[
+  { "name": "Sake", "category": "Sashimi" },
+  { "name": "Unagi", "category": "Nigiri" },
+  { "name": "Hamachi", "category": "Sashimi" },
+  { "name": "Hotate", "category": "Nigiri" },
+  { "name": "Uni", "category": "Nigiri" },
+  { "name": "California Roll", "category": "Maki" },
+  { "name": "Rainbow Roll", "category": "Maki" },
+  { "name": "Otoro", "category": "Nigiri" },
+  { "name": "Chutoro", "category": "Nigiri" },
+  { "name": "Buri", "category": "Nigiri" },
+  { "name": "Mushi Awabi", "category": "Nigiri" },
+  { "name": "Kuruma Ebi", "category": "Nigiri" },
+  { "name": "Sayori", "category": "Nigiri" },
+  { "name": "Hamaguri", "category": "Nigiri" },
+  { "name": "Katsuo", "category": "Nigiri" },
+  { "name": "Kohada", "category": "Nigiri" },
+  { "name": "Akagai", "category": "Nigiri" },
+]
+
