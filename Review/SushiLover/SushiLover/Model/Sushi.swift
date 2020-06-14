@@ -9,54 +9,54 @@
 import Foundation
 
 struct Sushi: Decodable {
-  let name: String
-  let category: Category
-  
-  enum Category: Decodable {
-    case all
-    case nigiri
-    case sashimi
-    case maki
-  }
+    let name: String
+    let category: Category
+    
+    enum Category: Decodable {
+        case all
+        case nigiri
+        case sashimi
+        case maki
+    }
 }
 
 extension Sushi.Category: CaseIterable { }
 
 extension Sushi.Category: RawRepresentable {
-  typealias RawValue = String
-  
-  init?(rawValue: String) {
-    switch rawValue {
-      case "All": self = .all
-      case "Nigiri": self = .nigiri
-      case "Sashimi": self = .sashimi
-      case "Maki": self = .maki
-      default:
-        return nil
+    typealias RawValue = String
+    
+    init?(rawValue: String) {
+        switch rawValue {
+        case "All": self = .all
+        case "Nigiri": self = .nigiri
+        case "Sashimi": self = .sashimi
+        case "Maki": self = .maki
+        default:
+            return nil
+        }
     }
-  }
-  
-  var rawValue: String {
-    switch self {
-      case .all: return "All"
-      case .nigiri: return "Nigiri"
-      case .sashimi: return "Sashimi"
-      case .maki: return "Maki"
+    
+    var rawValue: String {
+        switch self {
+        case .all: return "All"
+        case .nigiri: return "Nigiri"
+        case .sashimi: return "Sashimi"
+        case .maki: return "Maki"
+        }
     }
-  }
 }
 
 extension Sushi {
-  static func sushis() -> [Sushi] {
-    guard
-      let url = Bundle.main.url(forResource: "sushi", withExtension: "json"),
-      let data = try? Data(contentsOf: url)
-      else { return [] }
-    
-    do {
-      return try JSONDecoder().decode([Sushi].self, from: data)
-    } catch {
-      return []
+    static func sushis() -> [Sushi] {
+        guard
+            let url = Bundle.main.url(forResource: "sushi", withExtension: "json"),
+            let data = try? Data(contentsOf: url)
+            else { return [] }
+        
+        do {
+            return try JSONDecoder().decode([Sushi].self, from: data)
+        } catch {
+            return []
+        }
     }
-  }
 }

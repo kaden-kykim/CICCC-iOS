@@ -9,5 +9,5 @@
 import UIKit
 
 extension UIColor {
-  static let mainRed = UIColor(rgb: 0xff6961)
+    static let mainRed = UIColor(rgb: 0xff6961)
 }
