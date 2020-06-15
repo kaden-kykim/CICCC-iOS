@@ -37,6 +37,11 @@ class SushiTableViewController: UITableViewController {
         setupSearchController()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     private func setupSearchController() {
         navigationItem.searchController = searchController
         searchController.searchResultsUpdater = self
