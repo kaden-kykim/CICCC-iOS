@@ -16,8 +16,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         let defaults = UserDefaults.standard
-        if defaults.object(forKey: "switch") != nil {
-            bluetoothSwitch.isOn = defaults.bool(forKey: "switch")
+        if defaults.object(forKey: Constants.UserDefaults.bluetoothSwitch) != nil {
+            bluetoothSwitch.isOn = defaults.bool(forKey: Constants.UserDefaults.bluetoothSwitch)
         }
     }
 
@@ -29,8 +29,7 @@ class ViewController: UIViewController {
         let defaults = UserDefaults.standard
         
         // 2. save the state
-        defaults.set(sender.isOn, forKey: "switch")
+        defaults.set(sender.isOn, forKey: Constants.UserDefaults.bluetoothSwitch)
     }
     
 }
-
