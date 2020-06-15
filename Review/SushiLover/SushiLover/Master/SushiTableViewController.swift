@@ -15,6 +15,8 @@ class SushiTableViewController: UIViewController {
     private var filteredSushis: [Sushi] = []
     
     private var tableView: UITableView!
+    
+    /// Take a look at UISearchToken
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchFooter: SearchFooter!
     private var searchFooterBottomConstraint: NSLayoutConstraint!
@@ -151,6 +153,7 @@ extension SushiTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         let category = Sushi.Category(rawValue: searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex])
+        // "Search Throttling"
         filterSushiFor(searchText: searchBar.text!, category: category)
     }
 }
