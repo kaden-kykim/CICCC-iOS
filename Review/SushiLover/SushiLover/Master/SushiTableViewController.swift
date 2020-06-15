@@ -24,7 +24,7 @@ class SushiTableViewController: UIViewController {
     }
     
     private var isFiltering: Bool {
-        return searchController.isActive && !isSearchbarEmpty
+        return searchController.isActive && (!isSearchbarEmpty || searchController.searchBar.selectedScopeButtonIndex != 0)
     }
     
     override func viewDidLoad() {
@@ -63,9 +63,12 @@ class SushiTableViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Sushi"
+        searchController.searchBar.delegate = self
         // ensure that the search bar doesn't remain on the screen if the user navigates to another view controller
         // while the UISearchController is active
         definesPresentationContext = true
+        
+        searchController.searchBar.scopeButtonTitles = Sushi.Category.allCases.map { $0.rawValue }
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(forName: UIResponder.keyboardDidShowNotification, object: nil, queue: .main) {
@@ -85,12 +88,16 @@ class SushiTableViewController: UIViewController {
     }
     
     private func filterSushiFor(searchText: String, category: Sushi.Category? = nil) {
-        filteredSushis = sushis.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-        if isFiltering {
-            searchFooter.isFilteringToShow(filteredItemCount: filteredSushis.count, of: sushis.count)
-        } else {
-            searchFooter.isNotFiltering()
+        filteredSushis = sushis.filter { (sushi) in
+            let isCategoryMatching = category == .all || category == sushi.category
+            if isSearchbarEmpty {
+                return isCategoryMatching
+            } else {
+                return isCategoryMatching && sushi.name.lowercased().contains(searchText.lowercased())
+            }
         }
+        
+        isFiltering ? searchFooter.isFilteringToShow(filteredItemCount: filteredSushis.count, of: sushis.count) : searchFooter.isNotFiltering()
         tableView.reloadData()
     }
     
@@ -143,6 +150,14 @@ extension SushiTableViewController: UITableViewDelegate {
 extension SushiTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
-        filterSushiFor(searchText: searchBar.text!)
+        let category = Sushi.Category(rawValue: searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex])
+        filterSushiFor(searchText: searchBar.text!, category: category)
+    }
+}
+
+extension SushiTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        let category = Sushi.Category(rawValue: searchBar.scopeButtonTitles![selectedScope])
+        filterSushiFor(searchText: searchBar.text!, category: category)
     }
 }
