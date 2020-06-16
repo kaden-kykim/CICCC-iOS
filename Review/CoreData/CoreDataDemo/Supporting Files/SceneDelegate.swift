@@ -20,7 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = UINavigationController(rootViewController: NewsTableViewController())
+        let rootViewController = NewsTableViewController()
+        rootViewController.container = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+        window?.rootViewController = UINavigationController(rootViewController: rootViewController)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

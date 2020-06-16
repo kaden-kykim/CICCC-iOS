@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import CoreData
 
 class NewsTableViewController: UITableViewController {
 
@@ -26,6 +27,8 @@ class NewsTableViewController: UITableViewController {
             navigationItem.rightBarButtonItem?.isEnabled = articles.count > 0
         }
     }
+    
+    var container: NSPersistentContainer!
     
     var searchText: String? {
         didSet {
@@ -71,9 +74,39 @@ class NewsTableViewController: UITableViewController {
                     if let diffs = self?.diffWithTheMostRecentArticles(articles) {
                         self?.articles.insert(diffs, at: 0)
                         self?.tableView.insertSections([0], with: .fade)
+                        self?.updateDatabase(with: diffs)
                     }
                     self?.refreshControl?.endRefreshing()
                 }
+            }
+        }
+    }
+    
+    private func updateDatabase(with articles: [Article]) {
+        container.performBackgroundTask { [weak self] context in
+            for article in articles {
+                _ = try? ManagedArticle.findOrCreateArticle(matching: article, in: context)
+            }
+            try? context.save()
+            self?.printDatabaseStatistics()
+        }
+    }
+    
+    private func printDatabaseStatistics() {
+        let context = container.viewContext // viewContext == main context on main thread (queue)
+        context.perform { // better be sure this is executed on main thread
+            if Thread.isMainThread {
+                print("on main thread")
+            } else {
+                print("off main thread")
+            }
+            
+            if let articleCount = (try? context.fetch(ManagedArticle.fetchRequest()))?.count {
+                print("\(articleCount) articles")
+            }
+            // a better way to count ... context.count(for: )
+            if let sourceCount = try? context.count(for: ManagedSource.fetchRequest()) {
+                print("\(sourceCount) sources")
             }
         }
     }
