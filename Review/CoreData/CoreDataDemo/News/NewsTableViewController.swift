@@ -73,7 +73,7 @@ class NewsTableViewController: UITableViewController {
             refreshControl?.endRefreshing()
             return
         }
-        NewsAPI.getTopHeadlines(with: searchText) { [weak self] (articles) in
+        NewsAPIRequest.shared.getTopHeadlines(with: searchText) { [weak self] (articles) in
             if let articles = articles?.articles {
                 DispatchQueue.main.async {
                     if let diffs = self?.diffWithTheMostRecentArticles(articles) {

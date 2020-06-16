@@ -10,34 +10,73 @@ import UIKit
 
 private let API_KEY = newsApiKey
 
-struct NewsAPI {
+class NewsAPIRequest {
     
-    enum EndPoints: String {
-        case baseURL = "https://newsapi.org/v2/"
-        case topHeadlines = "https://newsapi.org/v2/top-headlines"
-        case everything = "https://newsapi.org/v2/everything"
-    }
+    static let shared = NewsAPIRequest()
+
+    private var dataTask: URLSessionDataTask?
     
-    static func getTopHeadlines(with query: String, completion: @escaping (Articles?) -> Void) {
-        let url = URL(string: EndPoints.topHeadlines.rawValue)!.withQueries(["q": query, "apiKey": API_KEY, "country": "us"])!
+    private init() {}
+    
+    func getTopHeadlines(with query: String, completion: @escaping (Articles?) -> Void) {
+        let url = URL(string: EndPoints.topHeadlines)!
+            .withQueries(
+                [Parameters.q: query,
+                 Parameters.apiKey: API_KEY,
+                 Parameters.country: "us"])!
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, err) in
-            if let error = err {
-                debugPrint(error.localizedDescription)
+        fetch(from: url) { (articles: Articles?, err: Error?) in
+            if let err = err {
+                debugPrint(err.localizedDescription)
                 completion(nil)
                 return
             }
+            completion(articles)
+        }
+    }
+    
+    func fetch<T: Decodable>(from url: URL, completion: @escaping (T?, Error?) -> ()) {
+        dataTask?.cancel()
+        
+        dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                debugPrint("Client error! - \(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
             
-            if let data = data {
-                do {
-                    let articles = try JSONDecoder().decode(Articles.self, from: data)
-                    completion(articles)
-                } catch {
-                    debugPrint(error.localizedDescription)
+            guard let response = response as? HTTPURLResponse, (200..<300).contains(response.statusCode) else {
+                debugPrint("Server error!")
+                completion(nil, error)
+                return
+            }
+            
+            do {
+                guard let data = data else {
+                    debugPrint("Client error! - data is nil")
+                    completion(nil, error)
+                    return
                 }
+                let decodable = try JSONDecoder().decode(T.self, from: data)
+                completion(decodable, nil)
+            } catch {
+                debugPrint("JSON error: \(error.localizedDescription)")
+                completion(nil, error)
             }
         }
-        
-        task.resume()
+         
+        dataTask?.resume()
+    }
+    
+    struct EndPoints {
+        static let baseURL = "https://newsapi.org/v2/"
+        static let topHeadlines = "https://newsapi.org/v2/top-headlines"
+        static let everything = "https://newsapi.org/v2/everything"
+    }
+    
+    struct Parameters {
+        static let q = "q"
+        static let apiKey = "apikey"
+        static let country = "country"
     }
 }
