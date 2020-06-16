@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedArticle" representedClassName=".ManagedArticle" syncable="YES" codeGenerationType="category">
+        <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <attribute name="urlToImage" optional="YES" attributeType="URI"/>
+        <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedSource" inverseName="articles" inverseEntity="ManagedSource"/>
+    </entity>
+    <entity name="ManagedSource" representedClassName=".ManagedSource" syncable="YES" codeGenerationType="category">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="articles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedArticle" inverseName="source" inverseEntity="ManagedArticle"/>
+    </entity>
+    <elements>
+        <element name="ManagedArticle" positionX="-1425.39453125" positionY="3469.06640625" width="128" height="118"/>
+        <element name="ManagedSource" positionX="-1138.66015625" positionY="3513.01953125" width="128" height="73"/>
+    </elements>
+</model>
