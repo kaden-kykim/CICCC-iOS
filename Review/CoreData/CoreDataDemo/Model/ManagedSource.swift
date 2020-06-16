@@ -27,6 +27,7 @@ class ManagedSource: NSManagedObject {
         // No match, instantiate ManagedSource
         let source = ManagedSource(context: context)
         source.name = sourceInfo.name
+        source.firstLetter = String(sourceInfo.name.first!)
         return source
     }
 }

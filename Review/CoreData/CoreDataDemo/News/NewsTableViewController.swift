@@ -63,18 +63,23 @@ class NewsTableViewController: UITableViewController {
     }
     
     @objc func sortBySources(_ sender: UIBarButtonItem) {
-        print("Go to SourcesVC")
+        let sourcesTVC = SourcesTableViewController(container)
+        sourcesTVC.searchText = searchText
+        self.navigationController?.pushViewController(sourcesTVC, animated: true)
     }
     
     private func searchForArticles() {
-        guard let searchText = searchText else { return }
+        guard let searchText = searchText else {
+            refreshControl?.endRefreshing()
+            return
+        }
         NewsAPI.getTopHeadlines(with: searchText) { [weak self] (articles) in
             if let articles = articles?.articles {
                 DispatchQueue.main.async {
                     if let diffs = self?.diffWithTheMostRecentArticles(articles) {
                         self?.articles.insert(diffs, at: 0)
                         self?.tableView.insertSections([0], with: .fade)
-                        self?.updateDatabase(with: diffs)
+                        self?.updateDatabase(with: diffs, for: searchText)
                     }
                     self?.refreshControl?.endRefreshing()
                 }
@@ -82,10 +87,10 @@ class NewsTableViewController: UITableViewController {
         }
     }
     
-    private func updateDatabase(with articles: [Article]) {
+    private func updateDatabase(with articles: [Article], for searchText: String) {
         container.performBackgroundTask { [weak self] context in
             for article in articles {
-                _ = try? ManagedArticle.findOrCreateArticle(matching: article, in: context)
+                _ = try? ManagedArticle.findOrCreateArticle(matching: article, with: searchText, in: context)
             }
             try? context.save()
             self?.printDatabaseStatistics()
@@ -145,6 +150,10 @@ extension NewsTableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "\(searchText ?? "") \(articles.count - section)"
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
