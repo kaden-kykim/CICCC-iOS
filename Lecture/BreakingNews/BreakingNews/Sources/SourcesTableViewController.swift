@@ -19,12 +19,16 @@ class SourcesTableViewController: FetchedResultsTableViewController {
         
         let frc = NSFetchedResultsController<ManagedSource>(
             fetchRequest: request,
+//            managedObjectContext: container.viewContext,
             managedObjectContext: (UIApplication.shared.delegate as? AppDelegate)!.persistentContainer.viewContext,
             sectionNameKeyPath: "firstLetter",
-            cacheName: nil)
-        // It's going to permanently cache the results (stores on disk in some internal format)
+            cacheName: nil
+        )
+        // It's going to permanently cache the results (store on disk in some internal format)
         // Be sure that any cacheName you use is always associated with exactly the same request.
         // You'll have to invalidate the cache if you change anything about the request. (There's an API for it)
+        // It's okay to specify nil for the cacheName (no cacheing of fetch results in that case.)
+        
         frc.delegate = self
         return frc
     }()
@@ -52,6 +56,7 @@ class SourcesTableViewController: FetchedResultsTableViewController {
 
 extension SourcesTableViewController {
     // MARK: - table view data source
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 1
     }
@@ -89,7 +94,7 @@ extension SourcesTableViewController {
         return fetchedResultsController.section(forSectionIndexTitle: title, at: index)
     }
     
-    // MARK: table view delegate
+    // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
